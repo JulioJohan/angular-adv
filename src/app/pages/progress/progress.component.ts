@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   ]
 })
 export class ProgressComponent {
-
+  constructor() {
+    console.log("proggress");
+  }
+  
 }
