@@ -11,14 +11,16 @@ import { filter, map, Subscription } from 'rxjs';
 export class BreadcrumbsComponent implements OnDestroy{
 
   public titulo!:string;
+  public seccion!:string;
 
   public tituloSubs$!:Subscription;
 
   constructor(private router:Router,private activatedRoute:ActivatedRoute){
     
     this.tituloSubs$ =  this.getArgumentosRuta().
-    subscribe(({titulo})=>{
+    subscribe(({titulo,seccion})=>{
       this.titulo = titulo;
+      this.seccion =seccion
       document.title = `AdminPro - ${this.titulo}`; 
      
     })

@@ -10,6 +10,7 @@ import { LoginFormulario } from '../interfaces/login-form';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { ActualizarUsuario } from '../interfaces/ActualizarUsuario-form';
+import { ObtenerUsuarios } from '../interfaces/ObtenerUsuarios';
 
 declare const gapi: any;
 declare const google:any;
@@ -35,6 +36,13 @@ export class UsuarioService {
     return this.usuario.uid || '';
   }
 
+  get headers(){
+    return {
+      headers:{
+        'x-token':this.token
+      }
+    }
+  }
 
   logout(){
     //Remover el correo
@@ -127,5 +135,10 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login/google`,{token}).pipe(tap((resp:any)=>{
       localStorage.setItem('token',resp.token);
     }))
+  }
+
+  obtenerUsuarios(desde:number = 0):Observable<ObtenerUsuarios>{
+    const url =`${base_url}/usuarios/?desde=${desde}`
+    return this.http.get<ObtenerUsuarios>(url,this.headers);
   }
 }

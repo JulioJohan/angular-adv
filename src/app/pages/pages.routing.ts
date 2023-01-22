@@ -10,6 +10,7 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 const routes: Routes = [
     { 
@@ -17,13 +18,16 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate:[AuthGuard],
         children: [
-            { path: '', component: DashboardComponent,data:{titulo:'Dashboard'} },
-            { path: 'progress', component: ProgressComponent, data:{titulo:'Progress'}},
-            { path: 'grafica1', component: Grafica1Component,data:{titulo:'Grafica #1'} },
-            { path: 'account-settings', component: AccountSettingsComponent,data:{titulo:'Ajustes de cuenta'} },
-            { path: 'promesas',component:PromesasComponent,data:{titulo:'Promesas'}},
-            { path: 'rxjs',component:RxjsComponent, data:{titulo:'Rxjs'}},
-            { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario'}}
+            { path: '', component: DashboardComponent,data:{titulo:'Dashboard',seccion:'Principal'} },
+            { path: 'progress', component: ProgressComponent, data:{titulo:'Progress',seccion:'Principal'}},
+            { path: 'grafica1', component: Grafica1Component,data:{titulo:'Grafica #1',seccion:'Principal'} },
+            { path: 'account-settings', component: AccountSettingsComponent,data:{titulo:'Ajustes de cuenta',seccion:'Principal'} },
+            { path: 'promesas',component:PromesasComponent,data:{titulo:'Promesas',seccion:'Principal'}},
+            { path: 'rxjs',component:RxjsComponent, data:{titulo:'Rxjs',seccion:'Principal'}},
+            { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario',seccion:'Principal'}},
+            //Mantenimientos
+            { path: 'usuarios',component:UsuariosComponent, data:{titulo:'usuarios',seccion:'Mantenimiento'}}
+
         ]
     },
 ];
