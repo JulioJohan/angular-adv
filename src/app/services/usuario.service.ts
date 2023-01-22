@@ -8,6 +8,8 @@ import { tap, map, Observable, catchError, of } from 'rxjs';
 import { FormularioRegistro } from '../interfaces/register-form.interface';
 import { LoginFormulario } from '../interfaces/login-form';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario.model';
+import { ActualizarUsuario } from '../interfaces/ActualizarUsuario-form';
 
 declare const gapi: any;
 declare const google:any;
@@ -21,30 +23,37 @@ export class UsuarioService {
   public gapi:any;
   public auth2: any;
 
+  public usuario!:Usuario;
+
   constructor(private http:HttpClient,private router:Router, private ngZone:NgZone) {
   // this.googleInit()
   }
+  get token():string{
+    return localStorage.getItem('token') || '';
+  }
+  get uid():string{
+    return this.usuario.uid || '';
+  }
 
-//   googleInit(){
-//     return new Promise( resolve => {
-//      this.gapi.load('auth2', () => {
-//         this.auth2 = this.gapi.auth2.init({
-//           client_id: '122330311092-79l2glcpi7j80lg5ru5g5ekltqfbuhbf.apps.googleusercontent.com"',
-//           cookiepolicy: 'single_host_origin',
-//         });
-
-//         resolve(this.auth2);
-//       });
-//     })
-// }
-    
 
   logout(){
     //Remover el correo
     localStorage.removeItem('token');
-    const emailGoogle = localStorage.getItem('email')
+    const emailGoogle = localStorage.getItem('emailGoogle');
+    if(!emailGoogle){
+      this.ngZone.run(()=>{
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        this.router.navigateByUrl('/login');
+        return;
+      })
+    }
     google.accounts.id.revoke(emailGoogle, () =>{
-      this.router.navigateByUrl('/login');
+      this.ngZone.run(()=>{
+        this.router.navigateByUrl('/login');
+        localStorage.removeItem('emailGoogle')
+      })      
+      // this.router.navigateByUrl('/login');
     })
 
     // console.log(
@@ -63,17 +72,23 @@ export class UsuarioService {
     //obteniendo los headers
     return this.http.get(`${base_url}/login/renew`,{
       headers:{
-        'x-token':token 
+        'x-token':this.token 
       }
     }).pipe(
       //obtenemos la respuesta
-      tap((resp:any) =>{
-        console.log(resp.token)
+      map((resp:any) =>{
+        console.log(resp);                
+        const {email, google,nombre,role,img = '', uid} = resp.usuarioDB;
+        //instanciando para guardar y obtener los metodos
+        this.usuario = new Usuario(
+          nombre,email,'',img,google,role,uid 
+        );
+        // this.usuario.imprimirUsuario()
         //nueva version del token grabada
         localStorage.setItem('token',resp.token);
+        return true
       }),
-      //transformar a un booleano
-      map(resp=> true),
+   
       //si hay un error
       catchError(error => of(false))
     );
@@ -85,6 +100,19 @@ export class UsuarioService {
       console.log(resp)
       localStorage.setItem('token',resp.token);
     }))
+  }
+  actualizarUsuario(formularioData:ActualizarUsuario):Observable<Usuario>{
+    // formularioData ={
+    //   ...formularioData,
+    //   role:this.usuario.role || ''
+    // }
+    console.log(formularioData);
+    return this.http.put<Usuario>(`${base_url}/usuarios/actualizarUsuario/${this.uid}`,formularioData,{
+        headers:{
+          'x-token':this.token 
+        }
+    });
+    
   }
 
   login(formularioData:LoginFormulario){
