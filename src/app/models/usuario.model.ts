@@ -14,12 +14,13 @@ export class Usuario {
     ) { }
 
     get imagenURL(){
-        // http://localhost:3000/api/upload/usuarios/d2e845da-da81-46f4-bcd9-d861da7260sss30.gif
-        if(this.img?.includes('https')){
+        if(!this.img){
+            return `${base_url}/upload/usuarios/${this.img}`
+        }else if(this.img?.includes('https')){
             return this.img;
-        }
-        if(this.img == '') {
+        }else if(this.img == '') {
             return 'http://localhost:3000/api/upload/usuarios/no-image'
+        // http://localhost:3000/api/upload/usuarios/d2e845da-da81-46f4-bcd9-d861da7260sss30.gif
         }else{
             return `${base_url}/upload/usuarios/${this.img}`
         }

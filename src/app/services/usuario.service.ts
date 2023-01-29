@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from '../environments/enviroment';
 //dispara un efecto secundario
-import { tap, map, Observable, catchError, of } from 'rxjs';
+import { tap, map, Observable, catchError, of, delay } from 'rxjs';
 
 
 import { FormularioRegistro } from '../interfaces/register-form.interface';
@@ -109,17 +109,13 @@ export class UsuarioService {
       localStorage.setItem('token',resp.token);
     }))
   }
-  actualizarUsuario(formularioData:ActualizarUsuario):Observable<Usuario>{
-    // formularioData ={
-    //   ...formularioData,
-    //   role:this.usuario.role || ''
-    // }
+  actualizarPerfil(formularioData:ActualizarUsuario):Observable<Usuario>{
+    formularioData ={
+      ...formularioData,
+      role:this.usuario.getRole!
+    }
     console.log(formularioData);
-    return this.http.put<Usuario>(`${base_url}/usuarios/actualizarUsuario/${this.uid}`,formularioData,{
-        headers:{
-          'x-token':this.token 
-        }
-    });
+    return this.http.put<Usuario>(`${base_url}/usuarios/actualizarUsuario/${this.uid}`,formularioData,this.headers);
     
   }
 
@@ -139,6 +135,29 @@ export class UsuarioService {
 
   obtenerUsuarios(desde:number = 0):Observable<ObtenerUsuarios>{
     const url =`${base_url}/usuarios/?desde=${desde}`
-    return this.http.get<ObtenerUsuarios>(url,this.headers);
+    return this.http.get<ObtenerUsuarios>(url,this.headers).pipe(map(resp=>{
+      const usuarios = resp.usuarios.map(usuario=>
+        new Usuario(usuario.nombre,usuario.email,'',usuario.img,usuario.google,usuario.role,usuario.uid))
+      return {
+        total:resp.total,
+        usuarios
+      };
+    }))
+  }
+  eliminarUsuario(usuario:Usuario){
+    const url =`${base_url}/usuarios/eliminarUsuario/${usuario.uid}`
+    return this.http.delete(url,this.headers )
+  }
+
+
+  //Actualiza el usuario 
+  guardarUsuario(formularioData:Usuario):Observable<Usuario>{
+    // formularioData ={
+    //   ...formularioData,
+    //   role:this.usuario.role || ''
+    // }
+    console.log(formularioData);
+    return this.http.put<Usuario>(`${base_url}/usuarios/actualizarUsuario/${formularioData.uid}`,formularioData,this.headers);
+    
   }
 }
