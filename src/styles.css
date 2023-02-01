@@ -6,37 +6,40 @@
     animation-fill-mode: both
 }
 
-#themecolors .selector .cursor{
+#themecolors .selector .cursor {
     cursor: pointer;
 }
 
-#google-btn{
+#google-btn {
     align-items: center;
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
-.img-avatar{
+.img-avatar {
     width: 200px;
     height: 200px;
 }
-.w100{
+
+.w100 {
     width: 100px;
 }
-.w140{
+
+.w140 {
     width: 200px;
 }
 
-.avatar{
+.avatar {
     width: 75px;
     border-radius: 100%;
 }
 
-.oculto{
+.oculto {
     display: none;
 }
-.fondo-modal-imagen{
+
+.fondo-modal-imagen {
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0px;
@@ -47,6 +50,22 @@
     z-index: 9999;
 }
 
-.cursor{
+.cursor {
     cursor: pointer;
+}
+
+.w75 {
+    width: 75px;
+}
+/* body{
+    font-family: inter;
+} */
+
+@font-face {
+    font-family: "Inter";
+    src: url("/assets/Inter/static/Inter-Regular.ttf") format("truetype");
+}
+
+body {
+    font-family: "Inter", sans-serif;
 }

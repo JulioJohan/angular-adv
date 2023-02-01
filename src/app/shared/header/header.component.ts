@@ -26,4 +26,11 @@ export class HeaderComponent implements OnInit{
   logout(){
     this.usuarioService.logout()
   }
+
+  buscar(termino:string){
+    if(termino.length == 0){
+      this.router.navigateByUrl('/dashboard')
+    }
+    this.router.navigateByUrl(`/dashboard/buscar/${termino}`)
+  }
 }

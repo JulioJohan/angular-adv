@@ -11,6 +11,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const routes: Routes = [
     { 
@@ -25,6 +26,8 @@ const routes: Routes = [
             { path: 'promesas',component:PromesasComponent,data:{titulo:'Promesas',seccion:'Principal'}},
             { path: 'rxjs',component:RxjsComponent, data:{titulo:'Rxjs',seccion:'Principal'}},
             { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario',seccion:'Principal'}},
+            { path: 'buscar/:termino',component:BusquedaComponent,data:{titulo:'Busqueda',seccion:'Principal'}},
+
             //Mantenimientos
             { path: 'usuarios',component:UsuariosComponent, data:{titulo:'usuarios',seccion:'Mantenimiento'}}
 
