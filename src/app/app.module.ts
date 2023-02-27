@@ -10,11 +10,13 @@ import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { HospitalesComponent } from './pages/mantenimientos/hospitales/hospitales.component';
 import { ImagenesPipe } from './pipes/imagen.pipe';
-import { MedicoComponent } from './mantenimientos/medico/medico.component';
+import { MedicoComponent } from './pages/mantenimientos/medicos/medico.component';
+import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MedicosComponent,
     NopagefoundComponent,
     HospitalesComponent,
     ImagenesPipe,
@@ -24,7 +26,7 @@ import { MedicoComponent } from './mantenimientos/medico/medico.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    PagesModule,
+//    PagesModule,
     AuthModule
   ],
   bootstrap: [AppComponent]
