@@ -11,16 +11,19 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  public static VALIDACION_PASSWORD = "La Contraseña debe contener por lo menos un caracter especial, una mayuscula y un numero";
+
   public formularioPosteado = false;
 
   public formularioRegistro = this.formBuilder.group({
-    nombre: ['JulioJohan',[Validators.required,Validators.minLength(3)]],
-    email:['juliojohan100@gmail.com',[Validators.required,Validators.email]],
-    password:['123456',Validators.required],
-    password2:['123456',Validators.required],
+    nombre: ['',[Validators.required,Validators.minLength(3)]],
+    email:['',[Validators.required,Validators.email]],
+    password:['',Validators.required],
+    password2:['',Validators.required],
     terminos:[true,Validators.required]
   },{
-    validators: this.passwordsIguales('password','password2')
+    validators: this.passwordsIguales('password','password2'),
+    // Validators: this.validacionPasswordNumeros('password','password2')
   } );
 
   constructor(private formBuilder:FormBuilder,
@@ -30,11 +33,17 @@ export class RegisterComponent {
   }
 
   crearUsuario(){
+    const password1 = this.formularioRegistro.value.password;
+    const password2 = this.formularioRegistro.value.password2;
     this.formularioPosteado = true;
     console.log(this.formularioRegistro.value);
     if(this.formularioRegistro.invalid){
       return;
     }
+    if(!this.validacionPasswordNumeros(password1)){
+      Swal.fire('Contraseña ',RegisterComponent.VALIDACION_PASSWORD,'error');
+      return;
+    } 
     this.usuarioService.crearUsuario(this.formularioRegistro.value).subscribe(resp => {
       this.router.navigateByUrl('/')
     },err=>{
@@ -79,5 +88,11 @@ export class RegisterComponent {
         pass2Control?.setErrors({noEsIgual:true})
       }
     }
+  }
+  validacionPasswordNumeros(password:string){    
+      const expresionPassword = /^(?=.*[A-Z])(?=.*\d)(?=.*[<>])[A-Za-z\d<>]+$/;
+      const verificar = expresionPassword.test(password)
+      return verificar;
+             
   }
 }
