@@ -16,6 +16,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { MedicoComponent } from './mantenimientos/medico/medicos.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     RxjsComponent,
     PerfilComponent,
     UsuariosComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    MedicoComponent,
+    MedicosComponent
   ],
   exports:[
     DashboardComponent,

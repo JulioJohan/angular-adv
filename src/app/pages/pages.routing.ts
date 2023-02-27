@@ -12,7 +12,9 @@ import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
-
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 const routes: Routes = [
     { 
         path: 'dashboard', 
@@ -29,7 +31,10 @@ const routes: Routes = [
             { path: 'buscar/:termino',component:BusquedaComponent,data:{titulo:'Busqueda',seccion:'Principal'}},
 
             //Mantenimientos
-            { path: 'usuarios',component:UsuariosComponent, data:{titulo:'usuarios',seccion:'Mantenimiento'}}
+            { path: 'usuarios',component:UsuariosComponent, data:{titulo:'usuarios',seccion:'Mantenimiento'}},
+            { path: 'hospitales',component:HospitalesComponent, data:{titulo:'hospitales',seccion:'Mantenimiento'}},
+            { path: 'medicos',component:MedicosComponent, data:{titulo:'medicos',seccion:'Mantenimiento'}},
+            { path: 'medico/:id',component:MedicoComponent, data:{titulo:'medicos',seccion:'Mantenimiento'}}
 
         ]
     },

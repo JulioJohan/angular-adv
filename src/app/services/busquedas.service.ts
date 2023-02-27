@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { enviroment } from '../environments/enviroment';
 import { map, Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
+import { Hospital } from '../models/hospital.model';
 import { BusquedaTodos } from '../interfaces/busqueda_todos';
 
 const base_url = enviroment.base_url
@@ -30,6 +31,11 @@ export class BusquedasService {
     return resultados.map(user=> new Usuario(user.nombre, user.email,'',user.img, user.google,user.role,user.uid))
   }
 
+  private transformarHospitales(resultados:any[]):Hospital[]{
+    
+    return resultados
+  }
+
   busquedaGlobal(termino:string):Observable<BusquedaTodos>{
     const url =`${base_url}/todo/${termino}`;
     return this.http.get<BusquedaTodos>(url,this.headers);
@@ -41,7 +47,10 @@ export class BusquedasService {
     .pipe(map((resp:any)=> resp.data)).pipe(map((resp:any)=>{
       switch(tipo){
         case 'usuarios':
-          return this.transformarUsuarios(resp);        
+          return this.transformarUsuarios(resp);
+          
+        case 'hospitales':
+          return this.transformarHospitales(resp);
         default:
           return [];
       }
