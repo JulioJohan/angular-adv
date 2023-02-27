@@ -26,6 +26,8 @@ export class PerfilComponent implements OnInit {
     console.log(this.usuario);
   }
 
+  
+
   ngOnInit(): void {
     this.perfilForm = this.formBuilder.group({
       nombre: [this.usuario.nombre, Validators.required],
