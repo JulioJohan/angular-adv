@@ -16,8 +16,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
-import { MedicoComponent } from './mantenimientos/medico/medicos.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 
 
 @NgModule({
@@ -31,9 +31,8 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
     RxjsComponent,
     PerfilComponent,
     UsuariosComponent,
-    BusquedaComponent,
-    MedicoComponent,
-    MedicosComponent
+    BusquedaComponent,    
+    
   ],
   exports:[
     DashboardComponent,
@@ -50,6 +49,6 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
     SharedModule,
     ComponentsModule,
     RouterModule
-  ]
+  ],  
 })
 export class PagesModule { }

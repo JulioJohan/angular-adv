@@ -57,10 +57,10 @@
                         <tbody>
                             <tr *ngFor="let hospital of hospitales">
                                 <td class="txt-center">
-                                    <img [src]="hospital.img! | imagen:'hospitales'" [alt]="hospital.nombre" class="avatar cursor" [click] = "abrirModal(hospital)">
+                                    <img [src]="hospital.img! | imagen:'hospitales'" [alt]="hospital.nombre" class="avatar cursor" click = "abrirModal(hospital)">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="Nombre del hospital"  [(ngModel)] = "hospital.nombre"/>
+                                    <input type="text" class="form-control" placeholder="Nombre del hospital"   [(ngModel)] = "hospital.nombre"/>
                                 </td>
 
                                 <td class="text-nowrap text-center">

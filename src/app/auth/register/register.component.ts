@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { enviroment } from '../../environments/enviroment.product';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +15,17 @@ export class RegisterComponent {
   public static VALIDACION_PASSWORD = "La Contraseña debe contener por lo menos un caracter especial, una mayuscula y un numero";
 
   public formularioPosteado = false;
+  public keyGoogle:string = enviroment.keyCaptchaGoogle;
+
+  public lenguajeCaptha = 'es';
 
   public formularioRegistro = this.formBuilder.group({
     nombre: ['',[Validators.required,Validators.minLength(3)]],
     email:['',[Validators.required,Validators.email]],
     password:['',Validators.required],
     password2:['',Validators.required],
-    terminos:[true,Validators.required]
+    terminos:[,Validators.required],
+    recaptcha:['',Validators.required]
   },{
     validators: this.passwordsIguales('password','password2'),
     // Validators: this.validacionPasswordNumeros('password','password2')
@@ -36,20 +41,30 @@ export class RegisterComponent {
     const password1 = this.formularioRegistro.value.password;
     const password2 = this.formularioRegistro.value.password2;
     this.formularioPosteado = true;
-    console.log(this.formularioRegistro.value);
-    if(this.formularioRegistro.invalid){
-      return;
-    }
+      
     if(!this.validacionPasswordNumeros(password1)){
       Swal.fire('Contraseña ',RegisterComponent.VALIDACION_PASSWORD,'error');
       return;
     } 
+    // this.verificarCaptha();
+    if(this.formularioRegistro.value.recaptcha == "" ){
+      console.log('entre')
+      Swal.fire('Captha','Verifica el captha','error');
+      return;
+    }
+    if(this.formularioRegistro.invalid){
+      return;
+    }
     this.usuarioService.crearUsuario(this.formularioRegistro.value).subscribe(resp => {
       this.router.navigateByUrl('/')
     },err=>{
       //Si sucede un error
       Swal.fire('Error',err.error.msg,'error');
     })
+  }
+
+  verificarRecaptcha(data:string){
+   this.formularioRegistro.value.recaptcha = data;    
   }
 
   campoNoValido(campo:string):boolean{
@@ -90,8 +105,10 @@ export class RegisterComponent {
     }
   }
   validacionPasswordNumeros(password:string){    
-      const expresionPassword = /^(?=.*[A-Z])(?=.*\d)(?=.*[<>])[A-Za-z\d<>]+$/;
+      const expresionPassword = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+=\-/><])[A-Za-z\d!@#$%^&*()_+=\-/><]{8,}$/;
+      console.log(password)
       const verificar = expresionPassword.test(password)
+      console.log(verificar)
       return verificar;
              
   }

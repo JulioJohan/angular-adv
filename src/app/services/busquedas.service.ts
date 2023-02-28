@@ -26,12 +26,13 @@ export class BusquedasService {
       }
     }
   }
-  private transformarUsuarios(resultados:any[]):Usuario[]{
+  private transformarUsuarios(resultados:any[]):any[]{
     
     return resultados.map(user=> new Usuario(user.nombre, user.email,'',user.img, user.google,user.role,user.uid))
   }
 
-  private transformarHospitales(resultados:any[]):Hospital[]{
+  
+  private transformarHospitales(resultados:any[]):any[]{
     
     return resultados
   }

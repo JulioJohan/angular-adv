@@ -26,6 +26,7 @@ import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.compone
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    
 //    PagesModule,
     AuthModule
   ],
