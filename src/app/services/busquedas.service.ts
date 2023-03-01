@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
 import { Hospital } from '../models/hospital.model';
 import { BusquedaTodos } from '../interfaces/busqueda_todos';
+import { Medico } from '../models/medicos.model';
 
 const base_url = enviroment.base_url
 
@@ -36,6 +37,11 @@ export class BusquedasService {
     return resultados
   }
 
+  private transformarMedicos(resultados:any[]):Medico[]{
+    
+    return resultados
+  }
+
   busquedaGlobal(termino:string):Observable<BusquedaTodos>{
     const url =`${base_url}/todo/${termino}`;
     return this.http.get<BusquedaTodos>(url,this.headers);
@@ -51,6 +57,9 @@ export class BusquedasService {
           
         case 'hospitales':
           return this.transformarHospitales(resp);
+
+        case 'medicos':
+          return this.transformarMedicos(resp);
         default:
           return [];
       }
