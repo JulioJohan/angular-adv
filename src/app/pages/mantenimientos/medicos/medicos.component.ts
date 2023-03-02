@@ -20,7 +20,8 @@ export class MedicosComponent implements OnInit,OnDestroy{
   constructor(
     private medicoService: MedicoService,
     private modalImagenService: ModalImagenService,
-    private busquedasService:BusquedasService
+    private busquedasService:BusquedasService,
+    
   ){
 
   }
@@ -53,9 +54,10 @@ export class MedicosComponent implements OnInit,OnDestroy{
     if(termino.length === 0){
       return this.cargarMedicos;
     }
-      return this.busquedasService.buscar('medicos',termino).subscribe(resp=>{
-        this.medicos = resp;
-      })
+    this.busquedasService.buscar( 'medicos', termino )
+    .subscribe( resp => {
+      this.medicos = resp;
+    });
    
   }
 

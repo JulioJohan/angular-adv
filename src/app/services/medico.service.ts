@@ -4,6 +4,7 @@ import { enviroment } from '../environments/enviroment';
 import { Medico } from '../models/medicos.model';
 import { HttpClient } from '@angular/common/http';
 
+
 const base_url = enviroment.base_url;
 
 @Injectable({
@@ -36,7 +37,15 @@ export class MedicoService {
              );
   }
 
-  crearMedicos(medico: Medico) {
+  obtenerMedicoPorId(id: string){
+    const url = `${ base_url }/medicos/${ id }`;
+    return this.http.get( url, this.headers )
+              .pipe(
+                map((resp:any) => resp.medicos )
+             );
+  }
+
+  crearMedicos(medico:{ nombre: string, hospital: string}) {
 
     const url = `${ base_url }/medicos`;
     return this.http.post( url, medico , this.headers );
