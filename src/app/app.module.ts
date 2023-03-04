@@ -27,7 +27,7 @@ import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.compone
     AppRoutingModule,
     FormsModule,
     
-//    PagesModule,
+   PagesModule,
     AuthModule
   ],
   bootstrap: [AppComponent]

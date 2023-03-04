@@ -56,7 +56,8 @@ export class RegisterComponent {
       return;
     }
     this.usuarioService.crearUsuario(this.formularioRegistro.value).subscribe(resp => {
-      this.router.navigateByUrl('/')
+      Swal.fire('Usuario Creado Correctamente','Revisa tu Email para confirmar tu cuenta','warning')
+      this.router.navigateByUrl('/login')
     },err=>{
       //Si sucede un error
       Swal.fire('Error',err.error.msg,'error');

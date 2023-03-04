@@ -11,6 +11,7 @@ export class Usuario {
         public google?:boolean,
         public role?:string,
         public uid?: string,
+        public confirmado?:boolean,
     ) { }
 
     get imagenURL(){

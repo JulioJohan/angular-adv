@@ -79,21 +79,43 @@ export class LoginComponent implements AfterViewInit {
     }
 
   }
+
+  validacionCorreoElectronico(email:string){
+    const  validacionCorro = /\S+@\S+\.\S+/;
+    return validacionCorro.test(email);
+  }
+
   verificarRecaptcha(data: string) {
     this.formularioLogin.value.recaptcha = data;
   }
-  validaciones() {
+  validaciones(): boolean {
+    if(this.formularioLogin.value.email === ""){
+      Swal.fire('Email', 'Ingresa un correo valido', 'error');
+      return false;
+    }
+    if(!this.validacionCorreoElectronico(this.formularioLogin.value.email)){
+      Swal.fire('Email', 'Ingresa un correo valido', 'error');
+      return false;
+    }
+    if(this.formularioLogin.value.password === ""){
+      Swal.fire('Contraseña', 'Ingresa una contraseña valida', 'error');
+      return false;
+    }
     if (this.formularioLogin.value.recaptcha === "") {
       Swal.fire('Captha', 'Verifica el captha', 'error');
-      return;
+      return false;
     }
+    
+    return true;
   }
   login() {
 
-    this.validaciones();
+    if(!this.validaciones()){
+      return;
+    }
     this.usuarioService.login(this.formularioLogin.value).subscribe(data => {
-      // console.log(data)
-
+      console.log(data)  
+      localStorage.setItem('token',data.msg);
       if (this.formularioLogin.get('recordarme')?.value) {
         localStorage.setItem('email', this.formularioLogin.get('email')?.value)
       } else {
@@ -102,6 +124,7 @@ export class LoginComponent implements AfterViewInit {
       this.router.navigateByUrl('/');
 
     }, (error) =>
+    // console.log(error)
       this.validacion(error)
       // console.log(error.error.errores.email.msg)
     )
