@@ -10,14 +10,16 @@ export class ImagenesPipe implements PipeTransform {
 
   transform(img: string, tipo: 'usuarios'|'hospitales'|'medicos'): string {
     
-    if (!img){
-      return `${ base_url }/upload/usuarios/no-image`;
+    if (img !== ""){
+      return `${ base_url}/upload/usuarios/no-img`;
     }else if  (img.includes('https')) {
       return img;
     }else if  (img){
       return `${ base_url }/upload/${tipo}/${img}`;
+    }else if(img === ""){
+      return `${ base_url}/uploads/no-img`;
     }else {
-      return `${ base_url }/upload/usuarios/no-image`;
+      return `${ base_url }/upload/usuarios/no-img`;
     }
 
   }

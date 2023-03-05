@@ -12,21 +12,21 @@ import { HospitalesComponent } from './pages/mantenimientos/hospitales/hospitale
 import { ImagenesPipe } from './pipes/imagen.pipe';
 import { MedicoComponent } from './pages/mantenimientos/medicos/medico.component';
 import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.component';
+import { PipeModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MedicosComponent,
     NopagefoundComponent,
-    HospitalesComponent,
-    ImagenesPipe,
+    HospitalesComponent,    
     MedicoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    
+    PipeModule,
    PagesModule,
     AuthModule
   ],

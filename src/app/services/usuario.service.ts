@@ -52,7 +52,7 @@ export class UsuarioService {
 
   logout(){
     //Remover el correo
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     const emailGoogle = localStorage.getItem('emailGoogle');
     if(!emailGoogle){
       this.ngZone.run(()=>{
@@ -61,14 +61,16 @@ export class UsuarioService {
         this.router.navigateByUrl('/login');
         return;
       })
+    }else{
+      google.accounts.id.revoke(emailGoogle, () =>{
+        this.ngZone.run(()=>{
+          this.router.navigateByUrl('/login');
+          localStorage.removeItem('emailGoogle')
+        })      
+        // this.router.navigateByUrl('/login');
+      })
     }
-    google.accounts.id.revoke(emailGoogle, () =>{
-      this.ngZone.run(()=>{
-        this.router.navigateByUrl('/login');
-        localStorage.removeItem('emailGoogle')
-      })      
-      // this.router.navigateByUrl('/login');
-    })
+    
 
     // console.log(
     //   this.auth2);

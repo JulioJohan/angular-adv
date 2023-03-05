@@ -53,8 +53,11 @@ buscar(termino:string){
     })
   }
 
-  guardarCambios( hospital: Hospital ){
-
+  guardarCambios( hospital: Hospital ){   
+    if(hospital.nombre === "" || hospital.nombre.length <= 4){
+      Swal.fire('Nombre Invalido','Ingresa al menos un nombre mayor de cinco caracteres','error');
+      return;
+    }
     this.hospitalService.actualizarHospital( hospital._id, hospital.nombre ).subscribe( resp => {
       Swal.fire( 'Actualizado', hospital.nombre, 'success' )
     })
