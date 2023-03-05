@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core'; 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroment } from '../environments/enviroment';
 //dispara un efecto secundario
 import { tap, map, Observable, catchError, of, delay } from 'rxjs';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { ActualizarUsuario } from '../interfaces/ActualizarUsuario-form';
 import { ObtenerUsuarios } from '../interfaces/ObtenerUsuarios';
+import { Respuesta } from '../interfaces/respuesta';
+import { NuevoPassword } from '../interfaces/nuevo-password';
 
 declare const gapi: any;
 declare const google:any;
@@ -21,6 +23,10 @@ const base_url = enviroment.base_url;
   providedIn: 'root'
 })
 export class UsuarioService {
+
+  public static httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   public gapi:any;
   public auth2: any;
 
@@ -46,7 +52,7 @@ export class UsuarioService {
 
   logout(){
     //Remover el correo
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     const emailGoogle = localStorage.getItem('emailGoogle');
     if(!emailGoogle){
       this.ngZone.run(()=>{
@@ -55,14 +61,16 @@ export class UsuarioService {
         this.router.navigateByUrl('/login');
         return;
       })
+    }else{
+      google.accounts.id.revoke(emailGoogle, () =>{
+        this.ngZone.run(()=>{
+          this.router.navigateByUrl('/login');
+          localStorage.removeItem('emailGoogle')
+        })      
+        // this.router.navigateByUrl('/login');
+      })
     }
-    google.accounts.id.revoke(emailGoogle, () =>{
-      this.ngZone.run(()=>{
-        this.router.navigateByUrl('/login');
-        localStorage.removeItem('emailGoogle')
-      })      
-      // this.router.navigateByUrl('/login');
-    })
+    
 
     // console.log(
     //   this.auth2);
@@ -106,7 +114,8 @@ export class UsuarioService {
     // pipe guardando todo el token en el token storage
     return this.http.post(`${base_url}/usuarios/guardarUsuario`,formularioData).pipe(tap((resp:any)=>{
       console.log(resp)
-      localStorage.setItem('token',resp.token);
+      //agregar login 
+      // localStorage.setItem('token',resp.token);
     }))
   }
   actualizarPerfil(formularioData:ActualizarUsuario):Observable<Usuario>{
@@ -123,7 +132,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login`,formularioData).pipe(tap((resp:any)=>{
       console.log(resp)
       //guardando token
-      localStorage.setItem('token',resp.msg);
+     
     }))
   }
 
@@ -160,4 +169,22 @@ export class UsuarioService {
     return this.http.put<Usuario>(`${base_url}/usuarios/actualizarUsuario/${formularioData.uid}`,formularioData,this.headers);
     
   }
+
+  confirmarCuentaEmail(tokenDoble:string):Observable<any>{
+    return this.http.get<any>(`${base_url}/login/confirmar/${tokenDoble}`);
+  }
+  olvideElPassword(email:any):Observable<Respuesta>{
+    console.log(email)
+    return this.http.post<Respuesta>(`${base_url}/login/olvide-password`,email);
+
+  }
+
+  comprobarTokenPassword(token:any):Observable<Respuesta>{
+    return this.http.get<Respuesta>(`${base_url}/login/nuevo-password/${token}`);
+  }
+  nuevoPassword(tokenDoble:any, password:any):Observable<Respuesta>{
+    // console.log(nuevoPassword.password);
+    return this.http.post<Respuesta>(`${base_url}/login/nuevo-password/${tokenDoble}`,password);
+  }
+
 }

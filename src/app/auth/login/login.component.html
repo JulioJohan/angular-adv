@@ -28,13 +28,21 @@
                             formControlName="recordarme">
                             <label for="checkbox-signup"> Recordar </label>
                         </div>
-                        <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i
-                                class="fa fa-lock m-r-5"></i> Olvidar Password</a>
+                        <a  routerLink="/olvide-password" id="to-recover" class="text-dark pull-right"><i
+                                class="fa fa-lock m-r-5"></i> Olvide Contraseña</a>
                     </div>
                 </div>
                 <div class="form-group text-center m-t-20">
                     <div class="col-xs-12">
                         <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">Iniciar Sesion</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <ngx-recaptcha2 #captchaElem [siteKey]="keyGoogle"
+                            (success)="verificarRecaptcha($event)" [hl]="lenguajeCaptha" 
+                            formControlName="recaptcha">
+                        </ngx-recaptcha2>
                     </div>
                 </div>
                 <div class="row">
@@ -48,10 +56,15 @@
                 </div>
                 <div class="form-group m-b-0">
                     <div class="col-sm-12 text-center">
-                        No tienes una cuenta?<a routerLink="/register" class="text-primary m-l-5"><b>Sign
-                                Up</b></a>
+                        No tienes una cuenta?<a routerLink="/registrar" class="text-primary m-l-5"><b>Registrar</b></a>
                     </div>
                 </div>
+
+                <!-- <div class="form-group m-b-0">
+                    <div class="col-sm-12 text-center">
+                        Se te olvido la contraseña?<a routerLink="/olvide-password" class="text-primary m-l-5">Entre aqui</a>
+                    </div>
+                </div> -->
             </form>
             <form class="form-horizontal" id="recoverform" action="index.html">
                 <div class="form-group ">

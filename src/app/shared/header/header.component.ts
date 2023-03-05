@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.model';
+import { enviroment } from 'src/app/environments/enviroment';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,13 @@ import { Usuario } from 'src/app/models/usuario.model';
   styles: [
   ]
 })
-export class HeaderComponent implements OnInit{
 
+export class HeaderComponent implements OnInit{
+  public base_url = enviroment.base_url;
   
   public usuario!:Usuario;
+  public imagen:any = '';
+
 
   constructor(private usuarioService:UsuarioService,
              private router:Router)
@@ -20,8 +24,11 @@ export class HeaderComponent implements OnInit{
   }
   ngOnInit(): void {
     this.usuario = this.usuarioService.usuario;
-    console.log(this.usuario);
+    console.log("imagenUrL"+this.usuario.imagenURL);
+    console.log(this.usuario)
   }
+
+  
 
   logout(){
     this.usuarioService.logout()
