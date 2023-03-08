@@ -38,7 +38,7 @@ export class MedicoService {
   }
 
   obtenerMedicoPorId(id: string){
-    const url = `${ base_url }/medicos/${ id }`;
+    const url = `${ base_url }/medicos/obtenerMedicosById/${ id }`;
     return this.http.get( url, this.headers )
               .pipe(
                 map((resp:any) => resp.medicos )
@@ -47,19 +47,19 @@ export class MedicoService {
 
   crearMedicos(medico:{ nombre: string, hospital: string}) {
 
-    const url = `${ base_url }/medicos`;
+    const url = `${ base_url }/medicos/guardarMedico`;
     return this.http.post( url, medico , this.headers );
   }
 
   actualizarMedico( medico: Medico ) {
 
-    const url = `${ base_url }/medicos/${ medico._id }`;
+    const url = `${ base_url }/medicos/actualizarMedico/${ medico._id }`;
     return this.http.put( url,  medico , this.headers );
   }
 
   eliminarMedico( _id: string ) {
 
-    const url = `${ base_url }/medicos/${ _id }`;
+    const url = `${ base_url }/medicos/eliminarMedico/${ _id }`;
     return this.http.delete( url, this.headers );
   }
 

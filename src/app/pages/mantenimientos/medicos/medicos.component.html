@@ -60,7 +60,7 @@
               <tbody>
                   <tr *ngFor="let medico of medicos">
                     <td class="txt-center">
-                        <img [src]="medico.img! | imagen:'hospitales'" [alt]="medico.nombre" class="avatar cursor" (click) = "abrirModal(medico)">
+                        <img [src]="medico.img! | imagen:'medicos'" [alt]="medico.nombre" class="avatar cursor" (click) = "abrirModal(medico)">
                     </td>
                       <td>
                         {{medico.nombre}}
@@ -78,13 +78,13 @@
                   </tr>                            
               </tbody>
           </table>
-          <!-- <button class="btn btn-secondary">
+          <button class="btn btn-secondary">
               Anteriores
           </button>
           &nbsp;
           <button class="btn btn-secondary">
               Siguiente
-          </button>                    -->
+          </button>                   
       </div>
   </div>
 </div>

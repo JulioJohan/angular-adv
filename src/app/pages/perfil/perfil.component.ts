@@ -23,6 +23,8 @@ export class PerfilComponent implements OnInit {
     private usuarioService: UsuarioService,
     private fileUploadService: FileUploadService) {
     this.usuario = this.usuarioService.usuario;
+    console.log("usuario perfil");
+
     console.log(this.usuario);
   }
 
@@ -74,6 +76,10 @@ export class PerfilComponent implements OnInit {
   }
 
   cambiarImagen(file: File) {
+    if(this.usuario.google){
+      Swal.fire('Usuario de Google','Usuarios de Google no pueden actualizar la imagen','error');
+      return;
+    }
     this.imagenSubir = file;
     if (!file) {
       return this.imagenTemp = null;

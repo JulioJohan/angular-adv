@@ -9,18 +9,20 @@ const base_url = enviroment.base_url;
 export class ImagenesPipe implements PipeTransform {
 
   transform(img: string, tipo: 'usuarios'|'hospitales'|'medicos'): string {
-    
-    if (img !== ""){
+    console.log(img)
+    if (img === ""){
       return `${ base_url}/upload/usuarios/no-img`;
-    }else if  (img.includes('https')) {
+    }else if  (img?.includes('https')) {
       return img;
-    }else if  (img){
+    }else{
+      console.log("Entre else")
       return `${ base_url }/upload/${tipo}/${img}`;
-    }else if(img === ""){
-      return `${ base_url}/uploads/no-img`;
-    }else {
-      return `${ base_url }/upload/usuarios/no-img`;
     }
+    // else if(img === ""){
+    //   return `${ base_url}/uploads/no-img`;
+    // }else {
+    //   return `${ base_url }/upload/usuarios/no-img`;
+    // }
 
   }
 

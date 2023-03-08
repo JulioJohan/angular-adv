@@ -1,6 +1,6 @@
 import { Hospital } from "./hospital.model";
 
-interface _MedicoUser{
+export interface _MedicoUser{
     _id: string;
     nombre: string;
     img: string;

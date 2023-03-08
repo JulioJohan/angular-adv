@@ -43,9 +43,9 @@ export class MedicoComponent implements OnInit{
 
     this.cargarHospitales();
 
-    this.medicoForm.get('hospital').valueChanges
+    this.medicoForm.get('hospital')?.valueChanges
         .subscribe( hospitalId => {
-        this.hospitalSeleccionado = this.hospitales.find( h => h._id === hospitalId );
+        this.hospitalSeleccionado = this.hospitales.find( h => h._id === hospitalId )!;
         })
 
   }
@@ -63,7 +63,7 @@ export class MedicoComponent implements OnInit{
     .subscribe(medico =>{
 
       if(!medico){
-        return this.router.navigateByUrl(`/dashboard/medico`)
+        this.router.navigateByUrl(`/dashboard/medico`)
 
       }
 
@@ -86,6 +86,8 @@ export class MedicoComponent implements OnInit{
   guardarMedico(){
 
   if(this.medicoSeleccionado){
+    const nombre = this.medicoSeleccionado.nombre
+    console.log(this.medicoSeleccionado)
     //actualizar
     const data ={
       ...this.medicoForm.value,
@@ -93,21 +95,22 @@ export class MedicoComponent implements OnInit{
     }
     this.medicoService.actualizarMedico(data)
     .subscribe(resp =>{
-      Swal.fire('Actualizado', `${ nombre } actualizado correctamente`,'success');
+      Swal.fire('Actualizado', `Actualizado correctamente`,'success');
     })
-
+    
   }else{
     //crear
-  }
-
     const { nombre } = this.medicoForm.value;
     this.medicoService.crearMedicos(this.medicoForm.value)
     .subscribe ((resp: any) => {
 
       Swal.fire('Creado', `${ nombre } creado correctamente`,'success');
-      this.router.navigateByUrl(`/dashboard/medico${resp.medico._id}`)
+      this.router.navigateByUrl(`/dashboard/medico/${resp.medico._id}`)
 
     })
   }
+  }
+
+    
 
 }
