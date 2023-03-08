@@ -18,6 +18,10 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+import { PipeModule } from '../pipes/pipes.module';
+import { NopagefoundComponent } from '../nopagefound/nopagefound.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 
 
 @NgModule({
@@ -32,7 +36,10 @@ import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
     PerfilComponent,
     UsuariosComponent,
     BusquedaComponent,    
-    
+    MedicosComponent,
+    NopagefoundComponent,
+    HospitalesComponent,    
+    MedicoComponent,  
   ],
   exports:[
     DashboardComponent,
@@ -45,6 +52,7 @@ import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    PipeModule,
     //requiero este modulo en los pages
     SharedModule,
     ComponentsModule,

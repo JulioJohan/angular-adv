@@ -41,6 +41,9 @@ export class UsuarioService {
   get uid():string{
     return this.usuario.uid || '';
   }
+  get role():'ADMIN_ROLE' | 'USER_ROLE'{
+    return this.usuario.role!;
+  }
 
   get headers(){
     return {
@@ -50,14 +53,21 @@ export class UsuarioService {
     }
   }
 
+  guardarLocalStorage(token:string,menu:any){
+    localStorage.setItem('token',token);
+    localStorage.setItem('menu',JSON.stringify(menu));
+  }
+
   logout(){
     //Remover el correo
     // localStorage.removeItem('token');
     const emailGoogle = localStorage.getItem('emailGoogle');
+    // TODO: Borrar menu
     if(!emailGoogle){
       this.ngZone.run(()=>{
         localStorage.removeItem('token');
         localStorage.removeItem('email');
+        localStorage.removeItem('menu')
         this.router.navigateByUrl('/login');
         return;
       })
@@ -66,6 +76,7 @@ export class UsuarioService {
         this.ngZone.run(()=>{
           this.router.navigateByUrl('/login');
           localStorage.removeItem('emailGoogle')
+          localStorage.removeItem('menu');
         })      
         // this.router.navigateByUrl('/login');
       })
@@ -101,7 +112,7 @@ export class UsuarioService {
         );
         // this.usuario.imprimirUsuario()
         //nueva version del token grabada
-        localStorage.setItem('token',resp.token);
+        this.guardarLocalStorage(resp.token,resp.menu);      
         return true
       }),
    
@@ -114,6 +125,9 @@ export class UsuarioService {
     // pipe guardando todo el token en el token storage
     return this.http.post(`${base_url}/usuarios/guardarUsuario`,formularioData).pipe(tap((resp:any)=>{
       console.log(resp)
+      this.guardarLocalStorage(resp.token,resp.menu)
+      // localStorage.setItem('token',resp.token);
+      // localStorage.setItem('menu',resp.menu);
       //agregar login 
       // localStorage.setItem('token',resp.token);
     }))
@@ -132,13 +146,18 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login`,formularioData).pipe(tap((resp:any)=>{
       console.log(resp)
       //guardando token
-     
+      this.guardarLocalStorage(resp.token,resp.menu)
+      // localStorage.setItem('token',resp.token);
+      // localStorage.setItem('menu',resp.menu);
     }))
   }
 
   loginGoogle(token:string){
     return this.http.post(`${base_url}/login/google`,{token}).pipe(tap((resp:any)=>{
-      localStorage.setItem('token',resp.token);
+      this.guardarLocalStorage(resp.token,resp.menu)
+
+      // localStorage.setItem('token',resp.token);
+      // localStorage.setItem('menu',resp.menu);
     }))
   }
 

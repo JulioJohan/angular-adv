@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit{
 
   buscar(termino:string){
     if(termino.length == 0){
-      this.router.navigateByUrl('/dashboard')
+      return;
     }
     this.router.navigateByUrl(`/dashboard/buscar/${termino}`)
   }
