@@ -68,6 +68,7 @@ export class LoginComponent implements AfterViewInit {
     })
   }
   validacion(error: any) {
+    console.log(error)
     if (error.error.msg) {
       Swal.fire('Error', error.error.msg, 'error')
       return;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../../services/settings.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -10,7 +11,8 @@ import { SettingsService } from '../../services/settings.service';
 export class AccountSettingsComponent implements OnInit {
 
 
-  constructor(private settingsService:SettingsService){
+  constructor(private settingsService:SettingsService,
+              private usuarioService:UsuarioService){
 
   }
 

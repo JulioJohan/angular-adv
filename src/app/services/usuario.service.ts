@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroment } from '../environments/enviroment';
 //dispara un efecto secundario
-import { tap, map, Observable, catchError, of, delay } from 'rxjs';
+import { tap, map, Observable, catchError, of, interval,Subscription, switchMap } from 'rxjs';
 
 
 import { FormularioRegistro } from '../interfaces/register-form.interface';
@@ -13,6 +13,13 @@ import { ActualizarUsuario } from '../interfaces/ActualizarUsuario-form';
 import { ObtenerUsuarios } from '../interfaces/ObtenerUsuarios';
 import { Respuesta } from '../interfaces/respuesta';
 import { NuevoPassword } from '../interfaces/nuevo-password';
+import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
+import * as CryptoJS from 'crypto-js';
+
+
+
+
 
 declare const gapi: any;
 declare const google:any;
@@ -24,6 +31,8 @@ const base_url = enviroment.base_url;
 })
 export class UsuarioService {
 
+  public subscripcion: Subscription = new Subscription;
+  public fechaExpiracion:any;
   public static httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -95,6 +104,7 @@ export class UsuarioService {
   }
   //verificar el token
   validarToken():Observable<boolean>{
+    console.log("Validar Token")
     const token = localStorage.getItem('token') || '';
     //obteniendo los headers
     return this.http.get(`${base_url}/login/renew`,{
@@ -145,6 +155,8 @@ export class UsuarioService {
   login(formularioData:LoginFormulario){
     return this.http.post(`${base_url}/login`,formularioData).pipe(tap((resp:any)=>{
       console.log(resp)
+      this.fechaExpiracion = jwt_decode(resp.msg)
+      localStorage.setItem('fechaExpiracion',this.fechaExpiracion.exp);
       //guardando token
       this.guardarLocalStorage(resp.token,resp.menu)
       // localStorage.setItem('token',resp.token);
@@ -205,5 +217,50 @@ export class UsuarioService {
     // console.log(nuevoPassword.password);
     return this.http.post<Respuesta>(`${base_url}/login/nuevo-password/${tokenDoble}`,password);
   }
+
+
+  tokenExpirado(){
+    console.log("verificando")
+    this.subscripcion = interval(60000).subscribe(data=>{
+      const fechaActual = new Date().getTime() / 1000;
+      const tiempoRestante = Number(localStorage.getItem('fechaExpiracion')) - fechaActual;
+      const tiempoRestanteMinutos = tiempoRestante / 60;
+      console.log(tiempoRestanteMinutos); 
+      if(Math.round(tiempoRestanteMinutos) === 5){
+        Swal.fire({
+          title: 'Tu sesion esta por expirar',
+          text: "Deseas Renovarlo?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Renovar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.validarToken();
+          }
+          if(result.isDismissed){
+            this.tokenExpirado();
+          }
+        })
+      }
+
+      if(tiempoRestanteMinutos <= 0){
+        Swal.fire('Sesion','Token Expirado','error');
+        this.pararTiempoVerificacion();
+        this.router.navigateByUrl('/login');
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('fechaExpiracion');
+      }
+    })
+   
+  }
+
+  pararTiempoVerificacion(){
+    this.subscripcion.unsubscribe()
+  }
+
+  
 
 }

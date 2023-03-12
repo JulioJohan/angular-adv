@@ -32,6 +32,7 @@ export class UsuariosComponent implements OnInit,OnDestroy {
    this.imagenSubida.unsubscribe();
   }
   ngOnInit(): void {
+    this.usuarioService.tokenExpirado();
     this.obtenerTodos();
     //cuando cambio la imagen llamamos a obtener todos
     this.imagenSubidaMetodo();

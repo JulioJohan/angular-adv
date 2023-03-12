@@ -39,6 +39,10 @@
     display: none;
 }
 
+.w150{
+    width: 60%;
+}
+
 .fondo-modal-imagen {
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;

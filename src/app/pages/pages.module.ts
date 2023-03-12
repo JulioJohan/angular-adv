@@ -22,6 +22,7 @@ import { PipeModule } from '../pipes/pipes.module';
 import { NopagefoundComponent } from '../nopagefound/nopagefound.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { BusquedaPaginasComponent } from './busqueda-paginas/busqueda-paginas.component';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
     MedicosComponent,
     NopagefoundComponent,
     HospitalesComponent,    
-    MedicoComponent,  
+    MedicoComponent, BusquedaPaginasComponent,  
   ],
   exports:[
     DashboardComponent,

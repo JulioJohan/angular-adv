@@ -6,6 +6,7 @@ import { ModalImagenComponent } from 'src/app/components/modal-imagen/modal-imag
 import { ModalImagenService } from '../../../services/modal-imagen.service';
 import { BusquedasService } from 'src/app/services/busquedas.service';
 import Swal from 'sweetalert2';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-medicos',
@@ -21,7 +22,7 @@ export class MedicosComponent implements OnInit,OnDestroy{
     private medicoService: MedicoService,
     private modalImagenService: ModalImagenService,
     private busquedasService:BusquedasService,
-    
+    private usuarioService:UsuarioService,
   ){
 
   }
@@ -35,6 +36,8 @@ export class MedicosComponent implements OnInit,OnDestroy{
       this.imgSubs = this.imgSubs = this.modalImagenService.nuevaImagen
       .pipe(delay(100))
       .subscribe(img => this.cargarMedicos());
+      this.usuarioService.tokenExpirado();
+
   }
 
   cargarMedicos (){

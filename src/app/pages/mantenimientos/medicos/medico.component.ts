@@ -8,6 +8,7 @@ import { ImagenesPipe } from 'src/app/pipes/imagen.pipe';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { delay } from 'rxjs';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-medico',
@@ -25,6 +26,7 @@ export class MedicoComponent implements OnInit{
     private fb: FormBuilder,
     private hospitalService: HospitalService,
     private medicoService : MedicoService,
+    private usuarioService:UsuarioService,
     private router: Router,
     private activatedRoute: ActivatedRoute
     ){
@@ -47,7 +49,7 @@ export class MedicoComponent implements OnInit{
         .subscribe( hospitalId => {
         this.hospitalSeleccionado = this.hospitales.find( h => h._id === hospitalId )!;
         })
-
+        this.usuarioService.tokenExpirado();
   }
 
   cargarMedico(id: string){

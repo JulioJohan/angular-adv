@@ -6,6 +6,7 @@ import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import { delay, Subscription } from 'rxjs';
 import { BusquedasService } from 'src/app/services/busquedas.service';
 import { ImagenesPipe } from 'src/app/pipes/imagen.pipe';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-hospitales',
@@ -20,6 +21,7 @@ export class HospitalesComponent implements OnInit,OnDestroy{
   constructor (
     private hospitalService: HospitalService,
     private modalImagenService: ModalImagenService,
+    private usuarioService:UsuarioService,
     private busquedasService: BusquedasService){ 
     
   }
@@ -33,7 +35,7 @@ export class HospitalesComponent implements OnInit,OnDestroy{
     this.imgSubs = this.imgSubs = this.modalImagenService.nuevaImagen
     .pipe(delay(100))
     .subscribe(img => this.cargarHospitales());
-
+    this.usuarioService.tokenExpirado();
 }
 
 buscar(termino:string){

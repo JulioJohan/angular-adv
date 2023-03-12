@@ -24,7 +24,7 @@ export class PerfilComponent implements OnInit {
     private fileUploadService: FileUploadService) {
     this.usuario = this.usuarioService.usuario;
     console.log("usuario perfil");
-
+    this.usuarioService.tokenExpirado();
     console.log(this.usuario);
   }
 

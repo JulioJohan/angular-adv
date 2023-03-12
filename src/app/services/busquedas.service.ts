@@ -43,6 +43,7 @@ export class BusquedasService {
     return resultados
   }
 
+
   busquedaGlobal(termino:string):Observable<BusquedaTodos>{
     const url =`${base_url}/todo/${termino}`;
     return this.http.get<BusquedaTodos>(url,this.headers);

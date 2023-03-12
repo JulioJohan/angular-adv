@@ -5,6 +5,7 @@ import { Usuario } from '../../models/usuario.model';
 import { Medico } from 'src/app/models/medicos.model';
 import { Hospital } from '../../models/hospital.model';
 import { BusquedaTodos } from 'src/app/interfaces/busqueda_todos';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -17,7 +18,8 @@ export class BusquedaComponent implements OnInit{
   // activatedRoute:ActivatedRoute,
   // obtiene los paramas
   constructor(private activatedRoute:ActivatedRoute,
-              private busquedasService:BusquedasService){
+              private busquedasService:BusquedasService,
+              private usuarioService:UsuarioService){
   }
 
   public usuarios:Usuario[] = [];
@@ -30,6 +32,7 @@ export class BusquedaComponent implements OnInit{
     this.activatedRoute.params.subscribe(({termino})=>{
       this.busquedaGlobal(termino);
     })
+    this.usuarioService.tokenExpirado();
   }
 
   busquedaGlobal(termino:string){
