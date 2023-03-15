@@ -12,6 +12,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { OlvidarPasswordComponent } from './olvidar-password/olvidar-password.component';
 import { ConfirmarComponent } from './confirmar/confirmar.component';
 import { NuevoPasswordComponent } from './nuevo-password/nuevo-password.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,8 @@ import { NuevoPasswordComponent } from './nuevo-password/nuevo-password.componen
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxCaptchaModule
-    
+    NgxCaptchaModule,
+
   ],  
 })
 export class AuthModule { }

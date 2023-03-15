@@ -15,9 +15,11 @@ import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.compone
 import { PipeModule } from './pipes/pipes.module';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     ReactiveFormsModule,
