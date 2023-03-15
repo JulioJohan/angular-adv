@@ -87,10 +87,10 @@ export class UsuarioService {
       google.accounts.id.revoke(emailGoogle, () =>{
         this.ngZone.run(()=>{
           this.pararTiempoVerificacion()
-          this.router.navigateByUrl('/login');
           localStorage.removeItem('emailGoogle')
           localStorage.removeItem('menu');
-
+          localStorage.removeItem('token');
+          this.router.navigateByUrl('/login');         
         })      
         // this.router.navigateByUrl('/login');
       })
@@ -232,7 +232,7 @@ export class UsuarioService {
 
   tokenExpirado(){
     console.log("verificando")
-    this.subscripcion = interval(1000).subscribe(data=>{
+    this.subscripcion = interval(60000).subscribe(data=>{
       const fechaActual = new Date().getTime() / 1000;
       const tiempoRestante = Number(localStorage.getItem('fechaExpiracion')) - fechaActual;
       const tiempoRestanteMinutos = tiempoRestante / 60;

@@ -24,5 +24,13 @@ export class SidebarComponent implements OnInit {
     this.usuario = this.usuarioService.usuario; 
    }
 
+   logout(){
+    this.usuarioService.pararTiempoVerificacion()
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('fechaExpiracion');
+    this.usuarioService.logout()
+    
+  }
 
 }
