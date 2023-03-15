@@ -122,6 +122,7 @@ export class LoginComponent implements AfterViewInit {
       } else {
         localStorage.removeItem('email')
       }
+      console.log("Entre")
       this.router.navigateByUrl('/');
 
     }, (error) =>

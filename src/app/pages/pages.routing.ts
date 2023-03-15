@@ -23,7 +23,7 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate:[AuthGuard],
         children: [
-            { path: '', component: DashboardComponent,data:{titulo:'Dashboard',seccion:'Principal'} },
+            { path: '', component: DashboardComponent,data:{titulo:'Pagina Inicio',seccion:'Principal'} },
             { path: 'progress', component: ProgressComponent, data:{titulo:'Progress',seccion:'Principal'}},
             { path: 'grafica1', component: Grafica1Component,data:{titulo:'Grafica #1',seccion:'Principal'} },
             { path: 'account-settings', component: AccountSettingsComponent,data:{titulo:'Ajustes de cuenta',seccion:'Principal'} },

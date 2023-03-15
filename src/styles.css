@@ -58,8 +58,21 @@
     cursor: pointer;
 }
 
+.w50{
+    width: 50%;
+    display: block;
+     margin: 0 auto;
+}
 .w75 {
     width: 75px;
+}
+.imagenes{
+    height: 100px;
+    width: 100%;
+}
+
+.w4{
+    width: 3%;
 }
 /* body{
     font-family: inter;

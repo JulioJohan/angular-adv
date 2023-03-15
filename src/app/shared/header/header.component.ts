@@ -31,7 +31,12 @@ export class HeaderComponent implements OnInit{
   
 
   logout(){
+    this.usuarioService.pararTiempoVerificacion()
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('fechaExpiracion');
     this.usuarioService.logout()
+    
   }
 
   buscar(termino:string){

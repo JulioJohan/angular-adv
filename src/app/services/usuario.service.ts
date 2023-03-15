@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core'; 
+import { ChangeDetectorRef, Injectable, NgZone } from '@angular/core'; 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroment } from '../environments/enviroment';
 //dispara un efecto secundario
@@ -15,6 +15,7 @@ import { Respuesta } from '../interfaces/respuesta';
 import { NuevoPassword } from '../interfaces/nuevo-password';
 import Swal from 'sweetalert2';
 import jwt_decode from 'jwt-decode';
+import { BehaviorSubject } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
 
@@ -32,6 +33,7 @@ const base_url = enviroment.base_url;
 export class UsuarioService {
 
   public subscripcion: Subscription = new Subscription;
+ 
   public fechaExpiracion:any;
   public static httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -78,14 +80,17 @@ export class UsuarioService {
         localStorage.removeItem('email');
         localStorage.removeItem('menu')
         this.router.navigateByUrl('/login');
+        this.pararTiempoVerificacion()
         return;
       })
     }else{
       google.accounts.id.revoke(emailGoogle, () =>{
         this.ngZone.run(()=>{
+          this.pararTiempoVerificacion()
           this.router.navigateByUrl('/login');
           localStorage.removeItem('emailGoogle')
           localStorage.removeItem('menu');
+
         })      
         // this.router.navigateByUrl('/login');
       })
@@ -122,7 +127,11 @@ export class UsuarioService {
         );
         // this.usuario.imprimirUsuario()
         //nueva version del token grabada
-        this.guardarLocalStorage(resp.token,resp.menu);      
+       
+        this.guardarLocalStorage(resp.token,resp.menu);
+        console.log("Renew"+resp.token)
+        this.fechaExpiracion = jwt_decode(resp.token)
+        localStorage.setItem('fechaExpiracion',this.fechaExpiracion.exp);
         return true
       }),
    
@@ -167,6 +176,8 @@ export class UsuarioService {
   loginGoogle(token:string){
     return this.http.post(`${base_url}/login/google`,{token}).pipe(tap((resp:any)=>{
       this.guardarLocalStorage(resp.token,resp.menu)
+      this.fechaExpiracion = jwt_decode(resp.token)
+      localStorage.setItem('fechaExpiracion',this.fechaExpiracion.exp);
 
       // localStorage.setItem('token',resp.token);
       // localStorage.setItem('menu',resp.menu);
@@ -238,6 +249,7 @@ export class UsuarioService {
         }).then((result) => {
           if (result.isConfirmed) {
             this.validarToken();
+            location.reload();
           }
           if(result.isDismissed){
             this.tokenExpirado();
