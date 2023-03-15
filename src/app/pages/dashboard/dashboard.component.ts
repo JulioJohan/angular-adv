@@ -18,8 +18,6 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.menu = JSON.parse(localStorage.getItem('menu')!);
     this.filtrarPorTituloMenu()
-    this.usuarioService.tokenExpirado();
-
   }
 
   filtrarPorTituloMenu(){

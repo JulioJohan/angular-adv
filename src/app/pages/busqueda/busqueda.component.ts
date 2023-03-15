@@ -32,7 +32,6 @@ export class BusquedaComponent implements OnInit{
     this.activatedRoute.params.subscribe(({termino})=>{
       this.busquedaGlobal(termino);
     })
-    this.usuarioService.tokenExpirado();
   }
 
   busquedaGlobal(termino:string){

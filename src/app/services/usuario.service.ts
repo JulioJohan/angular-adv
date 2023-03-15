@@ -32,7 +32,7 @@ const base_url = enviroment.base_url;
 })
 export class UsuarioService {
 
-  public subscripcion: Subscription = new Subscription;
+  public subscripcion = new Subscription;
  
   public fechaExpiracion:any;
   public static httpOptions = {
@@ -76,12 +76,12 @@ export class UsuarioService {
     // TODO: Borrar menu
     if(!emailGoogle){
       this.ngZone.run(()=>{
+        console.log("Entre")
+        this.pararTiempoVerificacion();
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('menu')
         this.router.navigateByUrl('/login');
-        this.pararTiempoVerificacion()
-        return;
       })
     }else{
       google.accounts.id.revoke(emailGoogle, () =>{
@@ -232,7 +232,7 @@ export class UsuarioService {
 
   tokenExpirado(){
     console.log("verificando")
-    this.subscripcion = interval(60000).subscribe(data=>{
+    this.subscripcion = interval(1000).subscribe(data=>{
       const fechaActual = new Date().getTime() / 1000;
       const tiempoRestante = Number(localStorage.getItem('fechaExpiracion')) - fechaActual;
       const tiempoRestanteMinutos = tiempoRestante / 60;
@@ -259,20 +259,21 @@ export class UsuarioService {
 
       if(tiempoRestanteMinutos <= 0){
         Swal.fire('Sesion','Token Expirado','error');
-        this.pararTiempoVerificacion();
-        this.router.navigateByUrl('/login');
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('fechaExpiracion');
+        this.pararTiempoVerificacion();
+        this.router.navigateByUrl('/login');
+
       }
     })
    
   }
 
-  pararTiempoVerificacion(){
-    this.subscripcion.unsubscribe()
+  pararTiempoVerificacion() {
+      this.subscripcion.unsubscribe();  
   }
-
+  
   
 
 }

@@ -35,7 +35,6 @@ export class HospitalesComponent implements OnInit,OnDestroy{
     this.imgSubs = this.imgSubs = this.modalImagenService.nuevaImagen
     .pipe(delay(100))
     .subscribe(img => this.cargarHospitales());
-    this.usuarioService.tokenExpirado();
 }
 
 buscar(termino:string){

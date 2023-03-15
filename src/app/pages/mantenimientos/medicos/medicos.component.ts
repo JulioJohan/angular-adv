@@ -36,8 +36,6 @@ export class MedicosComponent implements OnInit,OnDestroy{
       this.imgSubs = this.imgSubs = this.modalImagenService.nuevaImagen
       .pipe(delay(100))
       .subscribe(img => this.cargarMedicos());
-      this.usuarioService.tokenExpirado();
-
   }
 
   cargarMedicos (){

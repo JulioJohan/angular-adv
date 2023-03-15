@@ -102,10 +102,10 @@ export class LoginComponent implements AfterViewInit {
       Swal.fire('Contraseña', 'Ingresa una contraseña valida', 'error');
       return false;
     }
-    if (this.formularioLogin.value.recaptcha === "") {
-      Swal.fire('Captha', 'Verifica el captha', 'error');
-      return false;
-    }
+    // if (this.formularioLogin.value.recaptcha === "") {
+    //   Swal.fire('Captha', 'Verifica el captha', 'error');
+    //   return false;
+    // }
     
     return true;
   }
