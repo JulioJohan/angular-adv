@@ -32,7 +32,7 @@ const base_url = enviroment.base_url;
 })
 export class UsuarioService {
 
-  public subscripcion: Subscription = new Subscription;
+  public subscripcion = new Subscription;
  
   public fechaExpiracion:any;
   public static httpOptions = {
@@ -76,21 +76,21 @@ export class UsuarioService {
     // TODO: Borrar menu
     if(!emailGoogle){
       this.ngZone.run(()=>{
+        console.log("Entre")
+        this.pararTiempoVerificacion();
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('menu')
         this.router.navigateByUrl('/login');
-        this.pararTiempoVerificacion()
-        return;
       })
     }else{
       google.accounts.id.revoke(emailGoogle, () =>{
         this.ngZone.run(()=>{
           this.pararTiempoVerificacion()
-          this.router.navigateByUrl('/login');
           localStorage.removeItem('emailGoogle')
           localStorage.removeItem('menu');
-
+          localStorage.removeItem('token');
+          this.router.navigateByUrl('/login');         
         })      
         // this.router.navigateByUrl('/login');
       })
@@ -259,20 +259,21 @@ export class UsuarioService {
 
       if(tiempoRestanteMinutos <= 0){
         Swal.fire('Sesion','Token Expirado','error');
-        this.pararTiempoVerificacion();
-        this.router.navigateByUrl('/login');
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('fechaExpiracion');
+        this.pararTiempoVerificacion();
+        this.router.navigateByUrl('/login');
+
       }
     })
    
   }
 
-  pararTiempoVerificacion(){
-    this.subscripcion.unsubscribe()
+  pararTiempoVerificacion() {
+      this.subscripcion.unsubscribe();  
   }
-
+  
   
 
 }

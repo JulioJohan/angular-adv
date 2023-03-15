@@ -49,7 +49,6 @@ export class MedicoComponent implements OnInit{
         .subscribe( hospitalId => {
         this.hospitalSeleccionado = this.hospitales.find( h => h._id === hospitalId )!;
         })
-        this.usuarioService.tokenExpirado();
   }
 
   cargarMedico(id: string){
