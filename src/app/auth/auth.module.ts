@@ -42,5 +42,7 @@ import { DobleAuthenticacionComponent } from './doble-authenticacion/doble-authe
     { provide: MatDialogRef, useValue: {}},
     { provide: MAT_DIALOG_DATA, useValue: {} }
   ]
+
+  
 })
 export class AuthModule { }

@@ -23,6 +23,9 @@ import { NopagefoundComponent } from '../nopagefound/nopagefound.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 import { BusquedaPaginasComponent } from './busqueda-paginas/busqueda-paginas.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 
 @NgModule({
@@ -57,7 +60,11 @@ import { BusquedaPaginasComponent } from './busqueda-paginas/busqueda-paginas.co
     //requiero este modulo en los pages
     SharedModule,
     ComponentsModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule
   ],  
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class PagesModule { }
