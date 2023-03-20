@@ -164,12 +164,18 @@ export class UsuarioService {
   login(formularioData:LoginFormulario){
     return this.http.post(`${base_url}/login`,formularioData).pipe(tap((resp:any)=>{
       console.log(resp)
+     
+      // localStorage.setItem('token',resp.token);
+      // localStorage.setItem('menu',resp.menu);
+    }))
+  }
+
+  dobleAutheticacion(usuario:any){
+    return this.http.post(`${base_url}/login/dobleAuthenticacion`,usuario).pipe(tap((resp:any)=>{
       this.fechaExpiracion = jwt_decode(resp.msg)
       localStorage.setItem('fechaExpiracion',this.fechaExpiracion.exp);
       //guardando token
-      this.guardarLocalStorage(resp.token,resp.menu)
-      // localStorage.setItem('token',resp.token);
-      // localStorage.setItem('menu',resp.menu);
+      this.guardarLocalStorage(resp.msg,resp.menu)
     }))
   }
 
@@ -259,6 +265,10 @@ export class UsuarioService {
 
       if(tiempoRestanteMinutos <= 0){
         Swal.fire('Sesion','Token Expirado','error');
+        //saber el id de la alerta
+        setTimeout(()=>{
+          Swal.close()
+        },2000);
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('fechaExpiracion');
