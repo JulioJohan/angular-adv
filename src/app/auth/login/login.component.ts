@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -6,6 +6,9 @@ import { LoginFormulario } from '../../interfaces/login-form';
 import Swal from 'sweetalert2';
 
 import { enviroment } from 'src/app/environments/enviroment';
+import { delay } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DobleAuthenticacionComponent } from '../doble-authenticacion/doble-authenticacion.component';
 
 declare const google: any;
 
@@ -15,6 +18,8 @@ declare const google: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements AfterViewInit {
+
+  // @Output() informacionEnviada = new EventEmitter<string>(); 
 
   public keyGoogle: string = enviroment.keyCaptchaGoogle;
   public lenguajeCaptha = 'es';
@@ -33,7 +38,9 @@ export class LoginComponent implements AfterViewInit {
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    public dialog: MatDialog,
+    ) {
 
   }
   ngAfterViewInit(): void {
@@ -116,16 +123,39 @@ export class LoginComponent implements AfterViewInit {
       return;
     }
     this.usuarioService.login(this.formularioLogin.value).subscribe(data => {
-      console.log(data)  
-      localStorage.setItem('token',data.msg);
-      if (this.formularioLogin.get('recordarme')?.value) {
-        localStorage.setItem('email', this.formularioLogin.get('email')?.value)
-      } else {
-        localStorage.removeItem('email')
-      }
-      console.log("Entre")
-      this.router.navigateByUrl('/');
+     
+      Swal.fire({
+        title: 'El codigo de verificacion se envio a tu correo!',
+        text: data.msg,
+        imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      })
+      // delay(5000)      
+      // console.log(data)  
+      // localStorage.setItem('token',data.msg);
+      // if (this.formularioLogin.get('recordarme')?.value) {
+      //   localStorage.setItem('email', this.formularioLogin.get('email')?.value)
+      // } else {
+      //   localStorage.removeItem('email')
+      // }
+      // console.log("Entre")
+     
+      setTimeout(()=>{
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.data = this.formularioLogin.value;
+        dialogConfig.autoFocus = false
+        // this.informacionEnviada.emit(this.keyGoogle);
+        const matDialog = this.dialog.open(DobleAuthenticacionComponent,dialogConfig)
+        matDialog.afterClosed().subscribe(resultado =>{
+          if(resultado != undefined){
+            this.router.navigateByUrl('/')
+          }
+        })
+        this.router.navigateByUrl('/dobleAuthenticacion');
 
+      },3000)
     }, (error) =>
     // console.log(error)
       this.validacion(error)
@@ -134,4 +164,8 @@ export class LoginComponent implements AfterViewInit {
     //Validacion de usuarios
 
   }
+
+  
 }
+
+

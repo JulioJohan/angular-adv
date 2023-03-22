@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 import { LoginComponent } from './login/login.component';
@@ -12,7 +13,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { OlvidarPasswordComponent } from './olvidar-password/olvidar-password.component';
 import { ConfirmarComponent } from './confirmar/confirmar.component';
 import { NuevoPasswordComponent } from './nuevo-password/nuevo-password.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DobleAuthenticacionComponent } from './doble-authenticacion/doble-authenticacion.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     OlvidarPasswordComponent,
     ConfirmarComponent,
     NuevoPasswordComponent,
+    DobleAuthenticacionComponent,
   ],
   exports:[
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DobleAuthenticacionComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,13 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ReactiveFormsModule,
     HttpClientModule,
     NgxCaptchaModule,
+    MatDialogModule    
+  ], 
+  providers: [
+    { provide: MatDialogRef, useValue: {}},
+    { provide: MAT_DIALOG_DATA, useValue: {} }
+  ]
 
-  ],  
+  
 })
 export class AuthModule { }
