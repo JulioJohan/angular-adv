@@ -1,8 +1,21 @@
 .footer {
-    background-color: rgb(0, 1, 36);
+    background-color: rgb(223, 225, 255);
 }
 
-.h3{
-    color:white;
-    font-size: 20px;
+.alinear{
+    text-align: right;
+}
+
+.justificado {
+    color:rgb(0, 0, 0);
+}
+
+.imagen {
+    width: 30px;
+    height: 30px;
+    
+  }
+
+.letra{
+    color: rgb(223, 225, 255);
 }
