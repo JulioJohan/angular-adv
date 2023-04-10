@@ -1,21 +1,83 @@
-.footer {
+/* .footer {
     background-color: rgb(223, 225, 255);
-}
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin-top: auto;
+    
+} 
 
-.alinear{
-    text-align: right;
-}
 
-.justificado {
-    color:rgb(0, 0, 0);
-}
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #dae4fc;
+}*/
 
 .imagen {
     width: 30px;
     height: 30px;
-    
   }
-
-.letra{
-    color: rgb(223, 225, 255);
-}
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 50px 0;
+    z-index: 999; /* asegura que el footer esté por encima del contenido de la página */
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .col-sm-4 {
+    flex: 0 0 calc(33.33% - 30px);
+    margin: 15px;
+  }
+  
+  .footer-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .main-wrapper {
+    min-height: 100vh; /* altura mínima del contenedor principal */
+    position: relative;
+  }
+  
+  .page-wrapper {
+    padding-bottom: 150px; /* ajusta el valor para que sea igual a la altura de tu footer */
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: -50px; /* altura del footer */
+  }
+  
+  .mat-footer {
+    height: 150px; /* altura del footer */
+    margin-top: -50px; /* altura del footer */
+    position: relative;
+  }
+  
+  #main-wrapper {
+    padding-bottom: 100px; /* ajusta el valor para que sea igual a la altura de tu footer */
+  }
