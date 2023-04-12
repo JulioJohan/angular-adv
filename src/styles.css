@@ -70,7 +70,10 @@
     height: 100px;
     width: 100%;
 }
-
+html, body {
+    height: 100%;
+  }
+  
 .w4{
     width: 3%;
 }

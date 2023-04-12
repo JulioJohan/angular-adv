@@ -50,7 +50,7 @@ export class BusquedasService {
   }
   buscar(tipo:'usuarios'|'medicos'|'hospitales',
         termino:string){
-    const url =`${base_url}/todo/collecion/${tipo}/${termino}`;
+    const url =`${base_url}/collecion/${tipo}/${termino}`;
     return this.http.get(url,this.headers)
     .pipe(map((resp:any)=> resp.data)).pipe(map((resp:any)=>{
       switch(tipo){

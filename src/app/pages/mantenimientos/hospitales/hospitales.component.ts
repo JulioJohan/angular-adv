@@ -10,7 +10,8 @@ import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-hospitales',
-  templateUrl: './hospitales.component.html'
+  templateUrl: './hospitales.component.html',
+  styleUrls:['./hospitales.component.css']
 })
 export class HospitalesComponent implements OnInit,OnDestroy{
   

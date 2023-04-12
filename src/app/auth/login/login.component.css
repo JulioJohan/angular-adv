@@ -33,6 +33,12 @@ Login register and recover password Page
     margin: 0 auto;
 }
 
+#wrapper {
+    min-height: 100vh;
+    overflow-y: scroll;
+}
+  
+
 .login-box .footer {
     width: 100%;
     left: 0px;
@@ -47,6 +53,8 @@ Login register and recover password Page
 #recoverform {
     display: none;
 }
+
+
 
 .login-sidebar {
     padding: 0px;

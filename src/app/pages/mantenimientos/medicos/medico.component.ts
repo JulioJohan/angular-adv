@@ -13,6 +13,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
+  styleUrls:['./medicos.component.css']
 
 })
 export class MedicoComponent implements OnInit{

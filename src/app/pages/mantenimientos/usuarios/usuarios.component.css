@@ -1,0 +1,8 @@
+@media only screen and (max-width: 768px) {
+    .row.animated.fadeIn.fast.a{
+        min-height: 190vh;
+        min-width: 60vh;
+
+    }
+    
+  }

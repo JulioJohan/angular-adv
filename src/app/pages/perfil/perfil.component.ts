@@ -9,8 +9,7 @@ import { ReadVarExpr } from '@angular/compiler';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styles: [
-  ]
+  styleUrls: [ './perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
 
