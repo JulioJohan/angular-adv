@@ -33,10 +33,10 @@ Login register and recover password Page
     margin: 0 auto;
 }
 
-#wrapperlogin.login-register.login-sidebar {
+/* #wrapper.login-register.login-sidebar {
     min-height: 100vh !important;
     overflow-y: scroll !important;
-}
+} */
   
 
 .login-box .footer {
