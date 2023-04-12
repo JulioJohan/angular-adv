@@ -1,5 +1,0 @@
-buildCommand: "ng build --configuration production"
-staticPublishPath: "dist/adminpro"
-routes:
-  - src: .*
-    dest: index.html
