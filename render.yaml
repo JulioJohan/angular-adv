@@ -56,4 +56,5 @@ middlewares:
 
 routes:
   - src: /.*
-    dest: /index.html
+    dest: /adminpro/index.html
+
