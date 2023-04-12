@@ -1,0 +1,7 @@
+[build.enviroment]
+ NPM_FLAGS = "--force"
+
+[[redirects]]
+ from = "/*"
+ to = "/index.html"
+ status = 200 
