@@ -11,7 +11,8 @@
                 <a href="javascript:void(0)">Home</a>
             </li> -->
             <li class="breadcrumb-item">{{seccion}}</li>
-            <li class="breadcrumb-item active">{{titulo}}</li>
+            <li class="breadcrumb-item active cursor-color" [routerLink]="['/dashboard',titulo]">{{titulo}}</li>
+            <li *ngIf="subseccion" class="breadcrumb-item active">{{subseccion}}</li>
         </ol>
     </div>
 </div>

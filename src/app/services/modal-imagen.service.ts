@@ -23,6 +23,7 @@ export class ModalImagenService {
     this._ocultarModal = false;
     this.tipo = tipo;
     this.id = id;
+    console.log(id,img)
     // this.img = img!;
     if(img.includes('https')){
       this.img = img;

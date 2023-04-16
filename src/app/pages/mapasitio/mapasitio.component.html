@@ -1,0 +1,32 @@
+<div class="row justify-content-center align-items-center" >
+    <div class="col-lg-4 col-md-6">
+        <!-- Card -->
+        <div class="card h-100" >
+            <img class="card-img-top img-responsive w50"  src="../assets/images/icon/principal.png" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title text-center">Principal</h4>
+                <p class="card-text text-center">Rutas de practica con rxjs, como otras librerias</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                <div class="row justify-content-center " *ngFor="let inicio of principal">
+                    <a  [routerLink]="inicio.url" class="btn btn-info w-50 mb-4">{{inicio.titulo}}</a>        
+                </div>
+            </div>         
+        </div>
+        <!-- Card -->
+    </div>
+    <div class="col-lg-4 col-md-6 mt-3" >
+        <!-- Card -->
+        <div class="card" >
+            <img class="card-img-top img-responsive w50" src="../assets/images/icon/mantenimiento.png" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title text-center">Mantenimiento</h4>
+                <p class="card-text text-center">Agregar, Editar, Eliminar Hospital o Medicos</p>
+                <div *ngFor="let soporte of mantenimiento"  class="row justify-content-center">
+                    <a  [routerLink]="soporte.url" class="btn btn-info mb-4 w-50">{{soporte.titulo}}</a>
+                </div>
+
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+</div>

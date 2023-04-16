@@ -50,20 +50,44 @@
       
       <div class="table-responsive">
           <table class="table table-bordered">
-              <thead>
-                  <tr>
-                      <th class="w100">Foto</th>
-                      <th>Nombre</th>                                                           
+              <thead >
+                  <tr >
+                      <th class="w100 text-center ">Foto</th>
+                      <th class="text-center">Creado por</th>     
+                      <th class="text-center">Nombre</th>          
+                      <th class="text-center">Especialidad</th>                                                           
+                      <th class="text-center">Numero de Telefono</th>          
+                      <th class="text-center">Area</th>    
+                      <th class="text-center">Años de Experiencia</th>
+                      <th class="text-center">Hospital asociado</th>                                                                                                                                                                                                                                                                                                                                                                                                    
                       <th class="w100 text-nowrap">Acciones</th>
                   </tr>
               </thead>
-              <tbody>
+              <tbody >
                   <tr *ngFor="let medico of medicos">
                     <td class="txt-center">
                         <img [src]="medico.img! | imagen:'medicos'" [alt]="medico.nombre" class="avatar cursor" (click) = "abrirModal(medico)">
                     </td>
+                    <td>
+                        {{medico.usuario.nombre}}
+                      </td>  
                       <td>
                         {{medico.nombre}}
+                      </td> 
+                      <td>
+                        {{medico.especialidad}}
+                      </td>                          
+                      <td>
+                        {{medico.numeroTelefono}}
+                      </td>     
+                      <td>
+                        {{medico.area}}
+                      </td>  
+                      <td>
+                        {{medico.aniosExperiencia}}
+                      </td>  
+                      <td>
+                        {{medico.hospital?.nombre}}
                       </td>                      
                       <td class="text-nowrap">
                           <a [routerLink]="['/dashboard/medico',medico._id]" 

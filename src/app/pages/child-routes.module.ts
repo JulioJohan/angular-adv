@@ -15,9 +15,12 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 import { AdminGuard } from '../guards/admin.guard';
 import { BusquedaPaginasComponent } from './busqueda-paginas/busqueda-paginas.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HospitalComponent } from './mantenimientos/hospitales/hospital.component';
+import { MapasitioComponent } from './mapasitio/mapasitio.component';
 
 const childRoutes:Routes = [
-  { path: '', component: DashboardComponent,data:{titulo:'Pagina Inicio',seccion:'Principal'} },
+  { path: '', component: DashboardComponent,data:{titulo:'Pagina Inicio',seccion:'Principal'}},
+  { path: 'mapa-sitio',component: MapasitioComponent, data:{titulo:'mapa-sitio',seccion: 'Principal'}},
   { path: 'progress', component: ProgressComponent, data:{titulo:'Progress',seccion:'Principal'}},
   { path: 'grafica1', component: Grafica1Component,data:{titulo:'Grafica #1',seccion:'Principal'} },
   { path: 'account-settings', component: AccountSettingsComponent,data:{titulo:'Ajustes de cuenta',seccion:'Principal'} },
@@ -25,12 +28,13 @@ const childRoutes:Routes = [
   { path: 'rxjs',component:RxjsComponent, data:{titulo:'Rxjs',seccion:'Principal'}},
   { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario',seccion:'Principal'}},
   { path: 'buscar/:termino',component:BusquedaComponent,data:{titulo:'Busqueda',seccion:'Principal'}},
-  { path: 'busqueda/:termino',component: BusquedaPaginasComponent},
+  { path: 'busqueda/:termino',component: BusquedaPaginasComponent,data:{titulo:'Busqueda',seccion:'Principal'}},
 
   //Mantenimientos
   { path: 'hospitales',component:HospitalesComponent, data:{titulo:'hospitales',seccion:'Mantenimiento'}},
+  { path: 'hospital/:id',component:HospitalComponent, data:{titulo:'hospitales',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
   { path: 'medicos',component:MedicosComponent, data:{titulo:'medicos',seccion:'Mantenimiento'}},
-  { path: 'medico/:id',component:MedicoComponent, data:{titulo:'medicos',seccion:'Mantenimiento'}},
+  { path: 'medico/:id',component:MedicoComponent, data:{titulo:'medicos',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
   
   //Rutas Admin
   { path: 'usuarios',canActivate:[AdminGuard], component:UsuariosComponent, data:{titulo:'usuarios',seccion:'Mantenimiento'}}

@@ -30,6 +30,7 @@ export class BusquedaPaginasComponent implements OnInit{
     const dashboard = this.sidebarService.menu[1].submenu;  
     console.log(principal)
 
+    
     this.submenuPrincipal = principal.filter((data:Submenu) => data.titulo.toLowerCase().includes(termino.toLowerCase()));
     this.submenuDashboard = dashboard.filter((data:Submenu) => data.titulo.toLowerCase().includes(termino.toLowerCase()));
 

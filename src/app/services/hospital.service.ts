@@ -34,16 +34,24 @@ export class HospitalService {
              );
   }
 
-  crearHospital(nombre: string) {
-
-    const url = `${ base_url }/hospitales/guardarHospital`;
-    return this.http.post( url,{ nombre }, this.headers );
+  obtenerPorId(id:string){
+    const url = `${ base_url }/hospitales/obtenerHospitalById/${ id }`;
+    return this.http.get( url, this.headers )
+    .pipe(
+      map((resp:any) => resp.hospital)
+   );
   }
 
-  actualizarHospital( _id: string, nombre: string ) {
+  crearHospital(hospital: Hospital) {
 
-    const url = `${ base_url }/hospitales/actualizarHospital/${ _id }`;
-    return this.http.put( url,{ nombre }, this.headers );
+    const url = `${ base_url }/hospitales/guardarHospital`;
+    return this.http.post( url,hospital , this.headers );
+  }
+
+  actualizarHospital( hospital:Hospital) {
+
+    const url = `${ base_url }/hospitales/actualizarHospital/${ hospital._id }`;
+    return this.http.put( url,hospital, this.headers );
   }
 
   eliminarHospital( _id: string ) {

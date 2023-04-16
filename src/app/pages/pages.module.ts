@@ -22,9 +22,11 @@ import { PipeModule } from '../pipes/pipes.module';
 import { NopagefoundComponent } from '../nopagefound/nopagefound.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { HospitalComponent } from './mantenimientos/hospitales/hospital.component';
 import { BusquedaPaginasComponent } from './busqueda-paginas/busqueda-paginas.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MapasitioComponent } from './mapasitio/mapasitio.component';
 
 
 
@@ -43,7 +45,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     MedicosComponent,
     NopagefoundComponent,
     HospitalesComponent,    
-    MedicoComponent, BusquedaPaginasComponent,  
+    MedicoComponent, 
+    BusquedaPaginasComponent,  
+    HospitalComponent,
+    MapasitioComponent
   ],
   exports:[
     DashboardComponent,

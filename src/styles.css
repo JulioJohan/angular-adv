@@ -58,6 +58,12 @@
     cursor: pointer;
 }
 
+.cursor-color {
+    cursor: pointer;
+    color: red;
+
+}
+
 .w50{
     width: 50%;
     display: block;

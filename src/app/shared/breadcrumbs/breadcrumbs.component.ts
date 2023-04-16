@@ -12,15 +12,18 @@ export class BreadcrumbsComponent implements OnDestroy{
 
   public titulo!:string;
   public seccion!:string;
+  public subseccion!:string;
+
 
   public tituloSubs$!:Subscription;
 
   constructor(private router:Router,private activatedRoute:ActivatedRoute){
     
     this.tituloSubs$ =  this.getArgumentosRuta().
-    subscribe(({titulo,seccion})=>{
+    subscribe(({titulo,seccion,subseccion})=>{
       this.titulo = titulo;
       this.seccion =seccion
+      this.subseccion = subseccion;
       document.title = `AdminPro - ${this.titulo}`; 
      
     })

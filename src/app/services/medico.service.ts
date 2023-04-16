@@ -51,6 +51,21 @@ export class MedicoService {
     return this.http.post( url, medico , this.headers );
   }
 
+  guardarImagen(archivo:File,tipo:string){
+    const formData = new FormData()
+    formData.append('imagen',archivo) 
+    const url = `${ base_url }/upload/${tipo}`;  
+    return this.http.post(url,formData,this.headers);
+  }
+
+  actualizarImagen( archivo:File, tipo:'usuarios' | 'medicos' | 'hospitales', id:string){
+    const formData = new FormData()
+    formData.append('imagen',archivo) 
+    const url = `${base_url}/upload/${tipo}/${id}`;
+    return this.http.put(url,formData,this.headers);
+
+  }
+
   actualizarMedico( medico: Medico ) {
 
     const url = `${ base_url }/medicos/actualizarMedico/${ medico._id }`;

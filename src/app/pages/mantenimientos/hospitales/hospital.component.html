@@ -1,0 +1,258 @@
+
+<div class="row" *ngIf="!hospitalSeleccionado">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Crear Hospital</h6>
+
+                <form class="form-horizontal p-t-20"
+                        [formGroup]="hospitalFormulario"
+                        (submit)="guardarHospital()">
+
+                    <!-- <div class="form-group row"
+                            *ngIf="medicoSeleccionado">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <img [src]="medicoSeleccionado.img! | imagen: 'medicos'" 
+                                    class="img-thumbnail"/>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" 
+                                        formControlName="nombre"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Nombre del Hospital">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Ciudad</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control"
+                                        formControlName="ciudad">
+                                    <option value="">Seleccione la ciudad ubicada del hospital </option>
+                                    <option *ngFor="let ciudad of ciudadesGuanajuato"
+                                        [value]="ciudad">
+                                        {{ ciudad }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label"> Domicilio  </label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="text"                                         
+                                        formControlName="domicilio"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Domicilio">
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Numero de Teléfono</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="number" 
+                                        formControlName="numeroTelefono"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Numero de Télefono">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Fecha de Inaguración</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="date" 
+                                        formControlName="fechaInaguracion"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Fecha de Inaguración">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label"> Imagen</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="file" id="imagen" name="imagen" (change)="abrirModal($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                                        
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <!-- [disabled]="medicoForm.invalid" -->
+                            <button type="submit"
+                                   
+                                    class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col animated fadeIn fast"  
+        *ngIf="hospitalSeleccionado">
+        <div class="card">
+            <div class="card-body">
+                
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">{{ hospitalSeleccionado.nombre }}</h6>
+
+                <img [src]="hospitalSeleccionado.img! | imagen:'hospitales'" 
+                    class="img-thumbnail"/>
+
+            </div>
+        </div>
+
+    </div> -->
+</div>
+
+<div class="row" *ngIf="hospitalSeleccionado">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Editar Hospital</h6>
+
+                <form class="form-horizontal p-t-20"
+                        [formGroup]="hospitalFormulario"
+                        (submit)="guardarHospital()">
+
+                    <!-- <div class="form-group row"
+                            *ngIf="medicoSeleccionado">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <img [src]="medicoSeleccionado.img! | imagen: 'medicos'" 
+                                    class="img-thumbnail"/>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" 
+                                        formControlName="nombre"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Nombre del médico">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Ciudad</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control"
+                                        formControlName="ciudad">
+                                    <option value="">Seleccione la ciudad </option>
+                                    <option *ngFor="let ciudad of ciudadesGuanajuato"
+                                        [value]="ciudad">
+                                        {{ ciudad }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label"> Domicilio </label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="text"                                         
+                                        formControlName="domicilio"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Domicilio">
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Numero de Teléfono</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="number" 
+                                        formControlName="numeroTelefono"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Numero de Télefono">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Fecha de Inaguración</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="date" 
+                                        formControlName="fechaInaguracion"
+                                        class="form-control" 
+                                        id="exampleInputuname3" 
+                                        placeholder="Fecha de Inaguración">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label"> Imagen</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="file" id="imagen" name="imagen" (change)="abrirModal($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                                        
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <!-- [disabled]="medicoForm.invalid" -->
+                            <button type="submit"
+                                   
+                                    class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
