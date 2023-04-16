@@ -26,13 +26,13 @@ export class BusquedaPaginasComponent implements OnInit{
   }
 
   busquedaGlobalApp(termino:string){
-    const principal = this.sidebarService.menu[0].submenu;
-    const dashboard = this.sidebarService.menu[1].submenu;  
+    const principal = this.sidebarService.menu[0].busqueda;
+    const dashboard = this.sidebarService.menu[1].busqueda;  
     console.log(principal)
 
     
-    this.submenuPrincipal = principal.filter((data:Submenu) => data.titulo.toLowerCase().includes(termino.toLowerCase()));
-    this.submenuDashboard = dashboard.filter((data:Submenu) => data.titulo.toLowerCase().includes(termino.toLowerCase()));
+    this.submenuPrincipal = principal.filter((data:any) => data.titulo.toLowerCase().includes(termino.toLowerCase()));
+    this.submenuDashboard = dashboard.filter((data:any) => data.titulo.toLowerCase().includes(termino.toLowerCase()));
 
     const filtro = this.submenuPrincipal.concat(this.submenuDashboard);
     console.log(this.submenuPrincipal);

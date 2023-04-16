@@ -50,9 +50,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let menuPrincipal of submenuDashboard" class="animated fadeIn fast">
-                                <td class="text-center">Principal</td>
+                                <td class="text-center">Mantenimiento</td>
                                 <div class="text-center">
-                                    <a class="text-center" [routerLink]="['/dashboard/',menuPrincipal.url]">
+                                    <a class="text-center" [routerLink]="['/dashboard/'].concat(menuPrincipal.url)">
                                         <td>{{menuPrincipal.titulo}}</td>
                                     </a>
                                 </div>

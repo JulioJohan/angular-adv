@@ -86,7 +86,8 @@ export class UsuarioService {
     }else{
       google.accounts.id.revoke(emailGoogle, () =>{
         this.ngZone.run(()=>{
-          this.pararTiempoVerificacion()
+          location.reload();
+          this.pararTiempoVerificacion();
           localStorage.removeItem('emailGoogle')
           localStorage.removeItem('menu');
           localStorage.removeItem('token');
