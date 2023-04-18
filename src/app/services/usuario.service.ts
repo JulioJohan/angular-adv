@@ -84,8 +84,8 @@ export class UsuarioService {
         this.router.navigateByUrl('/login');
       })
     }else{
+      this.ngZone.run(()=>{
       google.accounts.id.revoke(emailGoogle, () =>{
-        this.ngZone.run(()=>{
           location.reload();
           this.pararTiempoVerificacion();
           localStorage.removeItem('emailGoogle')
