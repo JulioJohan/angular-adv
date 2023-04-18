@@ -27,7 +27,7 @@ export class ConfirmarComponent implements OnInit{
       if(!data.ok){
         Swal.fire({
           title: 'Token!',
-          text: 'Token No valido',
+          text: 'Token no valido',
           imageUrl: 'https://i.pinimg.com/564x/2d/25/99/2d25994fd88a04830fbd9b092eb982a4.jpg',
           imageWidth: 200,
           imageHeight: 200,
@@ -38,7 +38,7 @@ export class ConfirmarComponent implements OnInit{
       if(data.ok){
         Swal.fire({
           title: 'Tu cuenta ha sido confirmada!',
-          text: 'Ya puedes iniciar sesion',
+          text: 'Ya puedes iniciar sesión',
           imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
           imageWidth: 200,
           imageHeight: 200,

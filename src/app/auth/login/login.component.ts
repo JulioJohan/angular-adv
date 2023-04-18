@@ -43,6 +43,11 @@ export class LoginComponent implements AfterViewInit {
     ) {
 
   }
+
+  //Contraseña
+ 
+  
+
   ngAfterViewInit(): void {
     this.googleInit();
   }
@@ -125,7 +130,7 @@ export class LoginComponent implements AfterViewInit {
     this.usuarioService.login(this.formularioLogin.value).subscribe(data => {
      
       Swal.fire({
-        title: 'El codigo de verificacion se envio a tu correo!',
+        title: 'El código de verificación se envio a tu correo!',
         text: data.msg,
         imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
         imageWidth: 200,

@@ -40,7 +40,7 @@ export class OlvidarPasswordComponent {
       if(!data.ok){
         Swal.fire({
           title: data.msg,
-          text: 'Verifica el correo electronico',
+          text: 'Verifica el correo electrónico',
           imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
           imageWidth: 200,
           imageHeight: 200,
