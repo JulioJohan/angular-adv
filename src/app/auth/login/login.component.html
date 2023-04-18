@@ -4,7 +4,7 @@
 <section id="wrapper" class="login-register login-sidebar "
     style="background-image:url(../assets/images/background/login-register.jpg);  min-height: 100vh !important;
     overflow-y: scroll !important;">
-    <div class="login-box card ">
+    <div class="login-box">
         <div class="card-body ">
             <!-- <div matScroll [itemSize]="50"> -->
             <form class="form-horizontal form-material containerr mt-5"
@@ -31,16 +31,16 @@
                             <label for="checkbox-signup"> Recordar </label>
                         </div>
                         <a  routerLink="/olvide-password" id="to-recover" class="text-dark pull-right"><i
-                                class="fa fa-lock m-r-5"></i> Olvide Contraseña</a>
+                                class="fa fa-lock m-r-5"></i> Olvidé Contraseña</a>
                     </div>
                 </div>
                 <div class="form-group text-center m-t-20">
                     <div class="col-xs-12">
-                        <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">Iniciar Sesion</button>
+                        <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">Iniciar Sesión</button>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                         <ngx-recaptcha2 #captchaElem siteKey="6LcGmr8kAAAAAHXgMigTHdTGGbmWR8F-KJok4OKV"
                             (success)="verificarRecaptcha($event)" [hl]="lenguajeCaptha" 
                             formControlName="recaptcha">
@@ -66,7 +66,7 @@
                     </div>
                 </div> -->
             </form>
-            <form class="form-horizontal" id="recoverform" action="index.html">
+            <form class="form-horizontal form-material containerr mt-5" id="recoverform" action="index.html">
                 <div class="form-group ">
                     <div class="col-xs-12">
                         <h3>Recordar Contraseña</h3>
