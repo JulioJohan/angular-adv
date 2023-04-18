@@ -18,6 +18,12 @@ File: scss
 /*******************
 Login register and recover password Page
 ******************/
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
 .login-register {
     background-size: cover;
     background-repeat: no-repeat;
@@ -30,9 +36,13 @@ Login register and recover password Page
 
 .login-box {
     width: 400px;
+    height: 100%;
     margin: 0 auto;
+    background-color: white;
 }
-
+.card-body{
+    background-color: white;
+}
 #wrapper {
     /* min-height: 9vh; */
     overflow-y: scroll;
