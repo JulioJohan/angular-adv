@@ -77,3 +77,11 @@
     margin-top: 50px; /* update margin-top */
   }
   
+  .footer-list {
+    text-align: justify;
+  }
+  
+  .imagen {
+    display: inline-block;
+  }
+  

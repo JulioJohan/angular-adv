@@ -1,13 +1,40 @@
 @media only screen and (max-width: 768px) {
-    .col-lg-4.col-md-6.mt-3{
-        min-height: 150vh;
 
-    }
-
-    .justify-content-center.align-items-center{
-        min-height: 150vh;
+    .v {
+        min-height: 100vh;
 
     }
     
+  }
+
+  h5 {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  h3 {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    text-align: justify;
+    color: rgba(43, 43, 43, 0.993);
+  }
+    
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .column {
+    flex: 1;
+    padding: 40px;
+    margin: 10px;
+  }
+  
+  .w-500 {
+    width: 100px;
   }
   
