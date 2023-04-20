@@ -77,7 +77,7 @@ export class UsuarioService {
     if(!emailGoogle){
       this.ngZone.run(()=>{
         console.log("Entre")
-        this.pararTiempoVerificacion();
+        this.ngOnDestroy();
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('menu')
@@ -87,7 +87,7 @@ export class UsuarioService {
       this.ngZone.run(()=>{
       google.accounts.id.revoke(emailGoogle, () =>{
           location.reload();
-          this.pararTiempoVerificacion();
+          this.ngOnDestroy();
           localStorage.removeItem('emailGoogle')
           localStorage.removeItem('menu');
           localStorage.removeItem('token');
@@ -239,7 +239,7 @@ export class UsuarioService {
 
   tokenExpirado(){
     console.log("verificando")
-    this.subscripcion = interval(50000).subscribe(data=>{
+    this.subscripcion = interval(40000).subscribe(data=>{
       const fechaActual = new Date().getTime() / 1000;
       const tiempoRestante = Number(localStorage.getItem('fechaExpiracion')) - fechaActual;
       const tiempoRestanteMinutos = tiempoRestante / 60;
@@ -273,7 +273,7 @@ export class UsuarioService {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('fechaExpiracion');
-        this.pararTiempoVerificacion();
+        this.ngOnDestroy();
         this.router.navigateByUrl('/login');
 
       }
@@ -281,10 +281,10 @@ export class UsuarioService {
    
   }
 
-  pararTiempoVerificacion() {
-      this.subscripcion.unsubscribe();  
+  ngOnDestroy():void{
+    this.subscripcion.unsubscribe();  
   }
   
-  
+
 
 }

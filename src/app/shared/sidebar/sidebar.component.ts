@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
    }
 
    logout(){
-    this.usuarioService.pararTiempoVerificacion()
+    this.usuarioService.ngOnDestroy()
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('fechaExpiracion');

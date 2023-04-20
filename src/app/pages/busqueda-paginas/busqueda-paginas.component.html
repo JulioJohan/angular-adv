@@ -20,7 +20,7 @@
                             <tr *ngFor="let menuPrincipal of submenuPrincipal" class="animated fadeIn fast">
                                 <td class="text-center">Principal</td>
                                 <div class="text-center">
-                                    <a [routerLink]="['/inicio/',menuPrincipal.url]">
+                                    <a [routerLink]="[menuPrincipal.url]">
                                         <td>{{menuPrincipal.titulo}}</td>
                                     </a>
                                 </div>

@@ -13,7 +13,8 @@ export class BreadcrumbsComponent implements OnDestroy{
   public titulo!:string;
   public seccion!:string;
   public subseccion!:string;
-
+  public inicio!:boolean;
+  
 
   public tituloSubs$!:Subscription;
 
@@ -22,7 +23,8 @@ export class BreadcrumbsComponent implements OnDestroy{
     this.tituloSubs$ =  this.getArgumentosRuta().
     subscribe(({titulo,seccion,subseccion})=>{
       this.titulo = titulo;
-      this.seccion =seccion
+      titulo == "inicio" ? this.inicio = true : this.inicio = false;
+      this.seccion =seccion;
       this.subseccion = subseccion;
       document.title = `AdminPro - ${this.titulo}`; 
      

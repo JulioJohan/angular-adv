@@ -34,7 +34,7 @@ const childRoutes:Routes = [
   { path: 'hospitales',component:HospitalesComponent, data:{titulo:'hospitales',seccion:'Mantenimiento'}},
   { path: 'hospital/:id',component:HospitalComponent, data:{titulo:'hospitales',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
   { path: 'médicos',component:MedicosComponent, data:{titulo:'médicos',seccion:'Mantenimiento'}},
-  { path: 'medico/:id',component:MedicoComponent, data:{titulo:'medicos',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
+  { path: 'medico/:id',component:MedicoComponent, data:{titulo:'médicos',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
   
   //Rutas Admin
   { path: 'usuarios',canActivate:[AdminGuard], component:UsuariosComponent, data:{titulo:'usuarios',seccion:'Mantenimiento'}}
