@@ -19,21 +19,21 @@ import { HospitalComponent } from './mantenimientos/hospitales/hospital.componen
 import { MapasitioComponent } from './mapasitio/mapasitio.component';
 
 const childRoutes:Routes = [
-  { path: '', component: DashboardComponent,data:{titulo:'Pagina Inicio',seccion:'Principal'}},
+  { path: '', component: DashboardComponent,data:{titulo:'inicio',seccion:'Principal'}},
   { path: 'mapa-sitio',component: MapasitioComponent, data:{titulo:'mapa-sitio',seccion: 'Principal'}},
   { path: 'progress', component: ProgressComponent, data:{titulo:'Progress',seccion:'Principal'}},
   { path: 'grafica1', component: Grafica1Component,data:{titulo:'Grafica #1',seccion:'Principal'} },
-  { path: 'account-settings', component: AccountSettingsComponent,data:{titulo:'Ajustes de cuenta',seccion:'Principal'} },
+  { path: 'ajustes', component: AccountSettingsComponent,data:{titulo:'ajustes',seccion:'Principal'} },
   { path: 'promesas',component:PromesasComponent,data:{titulo:'Promesas',seccion:'Principal'}},
   { path: 'rxjs',component:RxjsComponent, data:{titulo:'Rxjs',seccion:'Principal'}},
-  { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario',seccion:'Principal'}},
+  { path: 'perfil',component:PerfilComponent, data:{titulo:'perfil',seccion:'Principal'}},
   { path: 'buscar/:termino',component:BusquedaComponent,data:{titulo:'Busqueda',seccion:'Principal'}},
   { path: 'busqueda/:termino',component: BusquedaPaginasComponent,data:{titulo:'Busqueda',seccion:'Principal'}},
 
   //Mantenimientos
   { path: 'hospitales',component:HospitalesComponent, data:{titulo:'hospitales',seccion:'Mantenimiento'}},
   { path: 'hospital/:id',component:HospitalComponent, data:{titulo:'hospitales',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
-  { path: 'medicos',component:MedicosComponent, data:{titulo:'medicos',seccion:'Mantenimiento'}},
+  { path: 'médicos',component:MedicosComponent, data:{titulo:'médicos',seccion:'Mantenimiento'}},
   { path: 'medico/:id',component:MedicoComponent, data:{titulo:'medicos',seccion:'Mantenimiento',subseccion: 'crear-actualizar'}},
   
   //Rutas Admin

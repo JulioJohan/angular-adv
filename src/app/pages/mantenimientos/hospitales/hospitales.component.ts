@@ -40,7 +40,8 @@ export class HospitalesComponent implements OnInit,OnDestroy{
 
 buscar(termino:string){
   if(termino.length === 0){
-    return this.cargarHospitales;
+    console.log(termino)
+    return this.cargarHospitales();
   }
     return this.busquedasService.buscar('hospitales',termino).subscribe(resp=>{
       this.hospitales = resp;

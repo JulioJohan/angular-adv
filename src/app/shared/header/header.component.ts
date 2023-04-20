@@ -43,6 +43,6 @@ export class HeaderComponent implements OnInit{
     if(termino.length == 0){
       return;
     }
-    this.router.navigateByUrl(`/dashboard/busqueda/${termino}`)
+    this.router.navigateByUrl(`/inicio/busqueda/${termino}`)
   }
 }

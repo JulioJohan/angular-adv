@@ -55,7 +55,7 @@ export class MedicosComponent implements OnInit,OnDestroy{
 
   buscar(termino:string){
     if(termino.length === 0){
-      this.cargarMedicos;
+      this.cargarMedicos();
     }
     this.busquedasService.buscar( 'medicos', termino )
     .subscribe( resp => {

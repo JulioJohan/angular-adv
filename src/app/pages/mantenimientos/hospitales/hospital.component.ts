@@ -61,7 +61,7 @@ export class HospitalComponent implements OnInit {
       delay(1000)
     ).subscribe(hospital => {
       if(!hospital){
-        this.router.navigateByUrl(`/dashboard/hospitales`)
+        this.router.navigateByUrl(`/inicio/hospitales`)
       
       }
   
@@ -147,7 +147,7 @@ export class HospitalComponent implements OnInit {
         this.hospitalService.actualizarHospital(data)
         .subscribe(resp =>{
           Swal.fire('Actualizado', `Actualizado correctamente`,'success');
-          this.router.navigateByUrl(`/dashboard/hospitales`);
+          this.router.navigateByUrl(`/inicio/hospitales`);
         })
       },2000)
       
@@ -181,7 +181,7 @@ export class HospitalComponent implements OnInit {
         .subscribe ((resp: any) => {
           
           Swal.fire('Creado', ` correctamente`,'success');
-          this.router.navigateByUrl(`/dashboard/hospitales`)
+          this.router.navigateByUrl(`/inicio/hospitales`)
     
         })
       },2000)

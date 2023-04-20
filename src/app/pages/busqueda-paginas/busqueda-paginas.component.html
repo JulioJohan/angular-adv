@@ -20,7 +20,7 @@
                             <tr *ngFor="let menuPrincipal of submenuPrincipal" class="animated fadeIn fast">
                                 <td class="text-center">Principal</td>
                                 <div class="text-center">
-                                    <a [routerLink]="['/dashboard/',menuPrincipal.url]">
+                                    <a [routerLink]="['/inicio/',menuPrincipal.url]">
                                         <td>{{menuPrincipal.titulo}}</td>
                                     </a>
                                 </div>
@@ -52,7 +52,7 @@
                             <tr *ngFor="let menuPrincipal of submenuDashboard" class="animated fadeIn fast">
                                 <td class="text-center">Mantenimiento</td>
                                 <div class="text-center">
-                                    <a class="text-center" [routerLink]="['/dashboard/'].concat(menuPrincipal.url)">
+                                    <a class="text-center" [routerLink]="['/inicio/'].concat(menuPrincipal.url)">
                                         <td>{{menuPrincipal.titulo}}</td>
                                     </a>
                                 </div>

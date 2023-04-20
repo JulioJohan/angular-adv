@@ -40,7 +40,7 @@ export class BusquedaPaginasComponent implements OnInit{
     // console.log(filtro)
   }
   enviarPagina(url:string){
-    this.router.navigateByUrl(`dashboard/${url}`);
+    this.router.navigateByUrl(`inicio/${url}`);
   }
   
   

@@ -82,7 +82,7 @@ export class DobleAuthenticacionComponent implements OnInit {
     this.data.authenticacionDoble = value;
 
     return this.usuarioService.dobleAutheticacion(this.data).subscribe(data => {      
-      this.router.navigateByUrl('/dashboard')
+      this.router.navigateByUrl('/inicio')
 
     },error=>{
       this.verificacionError(error)

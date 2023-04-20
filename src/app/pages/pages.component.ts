@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 import { SidebarService } from '../services/sidebar.service';
 import { UsuarioService } from '../services/usuario.service';
@@ -24,7 +24,10 @@ export class PagesComponent implements OnInit{
     this.verificarTiempoToken();
   }
 
-
+  @HostListener('window:beforeunload', ['$event'])
+  clearLocalStorage(event:any) {
+    localStorage.clear();
+  }
   
   
   verificarTiempoToken(){
