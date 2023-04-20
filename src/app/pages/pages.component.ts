@@ -24,9 +24,10 @@ export class PagesComponent implements OnInit{
     this.verificarTiempoToken();
   }
 
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:unload', ['$event'])
   clearLocalStorage(event:any) {
-    localStorage.clear();
+      this.usuarioService.cerrarSesion();
+    
   }
   
   

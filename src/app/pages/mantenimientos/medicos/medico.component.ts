@@ -103,7 +103,7 @@ export class MedicoComponent implements OnInit{
     .subscribe(medico =>{
 
       if(!medico){
-        this.router.navigateByUrl(`/inicio/medicos`)
+        this.router.navigateByUrl(`/inicio/médicos`)
 
       }
 
@@ -200,7 +200,7 @@ export class MedicoComponent implements OnInit{
       this.medicoService.actualizarMedico(data)
       .subscribe(resp =>{
         Swal.fire('Actualizado', `Actualizado correctamente`,'success');
-        this.router.navigateByUrl(`/inicio/medicos`);
+        this.router.navigateByUrl(`/inicio/médicos`);
       })
     },2000)
     

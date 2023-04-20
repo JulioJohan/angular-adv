@@ -69,6 +69,9 @@ export class UsuarioService {
     localStorage.setItem('menu',JSON.stringify(menu));
   }
 
+  cerrarSesion(){
+    localStorage.clear();
+  }
   logout(){
     //Remover el correo
     // localStorage.removeItem('token');
