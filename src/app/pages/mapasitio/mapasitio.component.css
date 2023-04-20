@@ -10,4 +10,17 @@
     }
     
   }
+
+  @media only screen and (max-width: 768px) {
+    /* .col-lg-4.col-md-6.mt-3{
+        min-height: 150vh;
+
+    } */
+
+    .container{
+        min-height: 150vh;
+
+    }
+    
+  }
   
