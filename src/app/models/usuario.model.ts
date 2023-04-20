@@ -16,8 +16,8 @@ export class Usuario {
 
     get imagenURL(){
         if(this.img === ""){
-            // return 'https://hospital-app-zk81.onrender.com/api/upload/usuarios/no-img'
-            return 'http://localhost:3000/api/upload/usuarios/no-img'
+            return 'https://hospital-app-zk81.onrender.com/api/upload/usuarios/no-img'
+            // return 'http://localhost:3000/api/upload/usuarios/no-img'
         }else if(this.img?.includes('https')){
             return this.img;
         }else{

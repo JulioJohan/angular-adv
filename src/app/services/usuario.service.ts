@@ -239,7 +239,7 @@ export class UsuarioService {
 
   tokenExpirado(){
     console.log("verificando")
-    this.subscripcion = interval(1000).subscribe(data=>{
+    this.subscripcion = interval(50000).subscribe(data=>{
       const fechaActual = new Date().getTime() / 1000;
       const tiempoRestante = Number(localStorage.getItem('fechaExpiracion')) - fechaActual;
       const tiempoRestanteMinutos = tiempoRestante / 60;
